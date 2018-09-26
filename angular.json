@@ -23,7 +23,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.css",
+              "src/assets/css/custom.css",
+              "node_modules/font-awesome/css/font-awesome.css"
+
+  
+            
             ],
             "scripts": []
           },
@@ -73,6 +82,8 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.css"
+              
+              
             ],
             "scripts": [],
             "assets": [

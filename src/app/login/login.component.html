@@ -1,0 +1,119 @@
+<!-- <div class="outer_box">
+  <div class="box-form">
+    <div class="left">
+      <div class="overlay">
+        <h1>Zulu Health</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et est sed felis aliquet sollicitudin</p>
+       </div>
+    </div>
+    <div class="right">
+      <h5>Login</h5>
+      <div class="inputs">
+        <form class="log-form" [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value) && loginForm.valid">
+  
+          <div class="form-section">
+            <div class="form-group">
+              <label class=" main_lable">User Name</label>
+              <input type="text" placeholder="Enter Username" formControlName="Username" class="form-control custom-field">
+             
+            </div>
+            <div class="form-group">
+                <label class=" main_lable">Password</label>
+              <input type="password" placeholder="Enter Password" formControlName="Password" class="form-control custom-field">
+              
+            </div>
+            <div class="form-group clearfix">
+  
+            </div>
+          </div>
+          <div class="btn-wrap">
+            <input type="submit" class="login-btn" value="Login" [disabled]="!loginForm.valid">
+          </div>
+        </form>
+      </div>
+     
+     <div class="remember-me--forget-password"> 
+      
+        <p class="checkbox_edit">
+          <input type="checkbox" id="test1">
+          <label for="test1"><span class="checkbox_text">Remember me</span> </label>
+        </p>
+        <a href="#" class="font_14">Need Help?</a> </div>
+      <br>
+      <a  class="font_14" [routerLink]="['/forgetPassword']" >Forgot Password?</a>
+    </div>
+   
+  </div>
+  
+</div> -->
+
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more">
+          <div class="text-center mar_tp_100 logo_side">
+          <!--  <img src="images/logo.png">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu rhoncus erat, ut convallis lectus. Mauris euismod ligula ut nunc venenatis interdum. </p>-->
+          </div>
+            </div>
+
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+				<form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value) && loginForm.valid">
+					<span class="login100-form-title p-b-59">
+						Log in					</span>
+
+				
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" placeholder="Email addess..."  formControlName="Username">
+						<span class="focus-input100"></span>
+					</div>
+
+					
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="text" name="pass" placeholder="*************"  formControlName="Password">
+						<span class="focus-input100"></span>
+					</div>
+
+					
+
+					<div class="flex-m w-full p-b-33">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								<span class="txt1">
+									I agree to the
+									<a href="#" class="txt2 hov1">
+										Terms of User
+									</a>
+								</span>
+							</label>
+                           
+						</div>
+
+						
+					</div>
+ 
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit" [disabled]="!loginForm.valid">
+								Log in
+              </button>
+              <!-- <input type="submit" class="login-btn" value="Login" [disabled]="!loginForm.valid"> -->
+						</div>
+
+						
+					</div>
+                    <div class="sign-up">
+                        <a [routerLink]="['/forgetPassword']" class="forget">Forget Password?</a>
+                    
+                   <p> Don't have account ?  <a href="#" class="forget">Sign up</a></p>
+                   </div>
+				</form>
+			</div>
+		</div>
+	</div>

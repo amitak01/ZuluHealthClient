@@ -1,16 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ToastrModule } from 'ngx-toastr';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { HttpModule } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './login/login.module';
+//components
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import {AuthGuard} from './shared/auth-gaurd/auth-gaurd';
+
+//services
+import {AuthenticationService} from './services/authentication.service'
+import {AppSettingsService} from './services/app-settings.service'
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent 
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+    NgIdleKeepaliveModule,
+    HttpModule,
+    HttpClientModule,
+    LoginModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
