@@ -15,6 +15,7 @@ import { AuthenticationService } from '../Services/Authentication.Service';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { UpperCasePipe } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {ChartModule} from 'primeng/chart';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         ModalModule.forRoot(),     
         AccordionModule.forRoot(),
         AccordionModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        ChartModule
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent]
 })

@@ -17,6 +17,7 @@ import {AppSettingsService} from './services/app-settings.service'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     LoginModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ChartModule
   ],
   providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]

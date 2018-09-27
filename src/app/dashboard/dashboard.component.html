@@ -1,8 +1,71 @@
 
  <app-sidebar></app-sidebar>
-<div>
+<div  class="side_body">
   <app-header></app-header>
 
+<div class="content">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4 class="main_heading">Dashboard</h4>
+    </div>
+  </div>
+      <div class="row">
+    <div class="col-md-3">
+      <div class="card-counter primary">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers">12</span>
+        <span class="count-name">Flowz</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter danger">
+        <i class="fa fa-ticket"></i>
+        <span class="count-numbers">599</span>
+        <span class="count-name">Instances</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-database"></i>
+        <span class="count-numbers">6875</span>
+        <span class="count-name">Data</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter info">
+        <i class="fa fa-users"></i>
+        <span class="count-numbers">35</span>
+        <span class="count-name">Users</span>
+      </div>
+    </div>
+  </div>
+    <div class="row mar_tp_30">
   
-    dashboard works!
+    <div class="col-sm-6">
+      <div class="shadow_body">
+      <p-chart type="line" [data]="data" ></p-chart>
+      </div>
+
+    </div>
+     <div class="col-sm-6">
+        <div class="shadow_body">
+    <p-chart type="radar" [data]="data2"></p-chart>
+     </div>
+
+    </div>
+        <div class="col-sm-12 mar_tp_30">
+           <div class="shadow_body">
+          <p-chart type="bar" [data]="data1"></p-chart>
+           </div>
+          </div>
+  </div>
+</div>
+</div>
+
+  <router-outlet></router-outlet>
+
 </div>
