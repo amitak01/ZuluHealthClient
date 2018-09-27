@@ -1,0 +1,94 @@
+.xenon_log_in{background:#f2f2f2; min-height: 100vh;}
+.logo_center{padding:30px 0 10px;}
+.logo_center img{height: 85px; object-fit: cover;}
+.welcome_xenon h1{color: #fff;font-size: 34px;font-weight: bold}
+.welcome_xenon h1 span{  border-bottom: 1px solid #fff; padding-bottom: 10px;}
+.welcome_xenon p { color: #fff;display: block; font-size: 14px;line-height: 24px; margin: 40px 0;}
+.btn-default.xenon_health{ background-color: transparent !important;border: 2px solid #fff !important; border-radius: 20px; color: #fff !important;
+  font-size: 17px; padding: 5px 20px;  width: 280px;}
+.btn-default.xenon_health span{padding-right:10px;}
+.btn_xenon{margin:70px 0 20px;}
+.panel.panel-default.xenon_login_form .panel-heading{background-color:#fff; border-bottom:none; color:#253b61; font-size:20px; padding: 30px 15px 0;text-align:center;}
+.panel.panel-default.xenon_login_form .panel-body{background-color:#fff; padding:20px 0 30px;}
+.xenon_form .form-group .control-label{ color: #5d5d5d; font-size: 14px;font-weight: 300;}
+.xenon_form .form-group input{ background: transparent none repeat scroll 0 0;border: 1px solid #c4c4c4; box-shadow: none;}
+/* Base for label styling */
+.coustomize_check_box [type="checkbox"]:not(:checked),
+.coustomize_check_box [type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+.coustomize_check_box [type="checkbox"]:not(:checked) + label,
+.coustomize_check_box [type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+.coustomize_check_box [type="checkbox"]:not(:checked) + label::before, .coustomize_check_box [type="checkbox"]:checked + label::before {
+  background: transparent none repeat scroll 0 0;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+  box-shadow: none;
+  content: "";
+  height: 22px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 22px;
+}
+/* checked mark aspect */
+.coustomize_check_box [type="checkbox"]:not(:checked) + label:after,
+.coustomize_check_box [type="checkbox"]:checked + label:after {
+  content: '✔';
+  position: absolute;
+  top: 4px; left: 4px;
+  font-size: 1.3em;
+  line-height: 0.8;
+  color: #414D87;
+  transition: all .2s;
+}
+/* checked mark aspect changes */
+.coustomize_check_box [type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+.coustomize_check_box [type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+.coustomize_check_box [type="checkbox"]:disabled:not(:checked) + label:before,
+.coustomize_check_box [type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+.coustomize_check_box [type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+.coustomize_check_box [type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+.coustomize_check_box > label { color: #5d5d5d;}
+.coustomize_check_box{padding:0 !important;}
+.btn.btn-default.LOGIN { background: #253b61 none repeat scroll; border: medium none; border-radius: 14px; color: #fff; width: 230px;}
+.forget_pswd{display:block; color:#5d5d5d; padding:30px 0 0; }
+.panel.panel-default.xenon_login_form {margin: 20px 0;}
+
+
+/*responsive media*/
+
+@media screen and (max-width:1200px) {
+	.welcome_xenon h1{font-size:25px;}
+}
+
+
+@media screen and (max-width:950px) {
+	.welcome_xenon h1{font-size:20px;}
+}
+
+
+
+

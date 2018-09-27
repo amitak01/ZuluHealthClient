@@ -48,12 +48,10 @@
 </div> -->
 
 
-	<div class="limiter">
+	<!-- <div class="limiter">
 		<div class="container-login100">
 			<div class="login100-more">
           <div class="text-center mar_tp_100 logo_side">
-          <!--  <img src="images/logo.png">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu rhoncus erat, ut convallis lectus. Mauris euismod ligula ut nunc venenatis interdum. </p>-->
           </div>
             </div>
 
@@ -103,7 +101,6 @@
 							<button class="login100-form-btn" type="submit" [disabled]="!loginForm.valid">
 								Log in
               </button>
-              <!-- <input type="submit" class="login-btn" value="Login" [disabled]="!loginForm.valid"> -->
 						</div>
 
 						
@@ -116,4 +113,50 @@
 				</form>
 			</div>
 		</div>
-	</div>
+  </div> -->
+  
+
+  <div class="xenon_log_in">
+    <div class="text-center logo_center"> <img src="assets/images/logo.png"> </div>
+    <div class="container">
+      <div class="row  justify-content-md-center">
+       
+        <div class="col-sm-5">
+          <div class="panel panel-default xenon_login_form">
+            <div class="panel-heading"> Please Login</div>
+            <div class="panel-body">
+              <form class="xenon_form" role="form" [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value) && loginForm.valid">
+                <div class="form-group clearfix">
+                  <label for="inputEmail3" class="col-sm-12 control-label"> User name or Email</label>
+                  <div class="col-sm-12">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="" required formControlName="Username">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <label for="inputPassword3" class="col-sm-12 control-label"> Password</label>
+                  <div class="col-sm-12">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="" required formControlName="Username">
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class=" col-sm-12">
+                    <div class="checkbox">
+                      <label class="coustomize_check_box">
+                     
+                      <a [routerLink]="['/forgetPassword']" class="forget">Forget Password?</a>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group last">
+                  <div class="col-sm-12 text-center">
+                    <button type="" class="btn btn-default LOGIN"> LOGIN</button>
+                     </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
