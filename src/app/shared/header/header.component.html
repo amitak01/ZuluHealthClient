@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a _ngcontent-c3="" href="#"><i _ngcontent-c3="" class="fa fa-bars show-side-btn" data-show="show-side-navigation1"></i></a>
+      <a _ngcontent-c3="" href="#"><i _ngcontent-c3="" class="fa fa-bars show-side-btn" data-show="show-side-navigation1" (click)="ToggleSideBar()"></i></a>
 
    <div class="search">
     <input type="text" placeholder="Type here"><i class="fa fa-search"></i>
@@ -15,7 +15,7 @@
             <li><a href="#"><i class="fa fa-envelope-o fw"></i> My inbox</a></li>
             <li><a href="#"><i class="fa fa-question-circle-o fw"></i> Help</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#"><i class="fa fa-sign-out"></i> Log out</a></li>
+            <li><a href="#" (click)="LogOut()" ><i class="fa fa-sign-out"></i> Log out</a></li>
           </ul>
         </li> 
         <li><a href="#"><i class="fa fa-comments"></i><span>23</span></a></li>

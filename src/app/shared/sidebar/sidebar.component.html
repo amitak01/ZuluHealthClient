@@ -1,4 +1,4 @@
-<aside class="side-nav" id="show-side-navigation1">
+<aside class="side-nav" id="show-side-navigation1" *ngIf="toggleCount">
   <!-- <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i> -->
   <div class="heading text-center">
     <div class="info">
@@ -6,8 +6,8 @@
     </div>
   </div>
   
-  <ul class="categories">
-    <li class="active"><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="#"> About us</a>
+  <!-- <ul class="categories"></ul> -->
+    <!-- <li class="active"><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="#"> About us</a>
       <ul class="side-nav-dropdown">
         <li><a href="#">Lorem ipsum</a></li>
         <li><a href="#">ipsum dolor</a></li>
@@ -51,7 +51,62 @@
         <li><a href="#">amet consectetur</a></li>
         <li><a href="#">ipsum dolor sit</a></li>
       </ul>
-    </li>
-   
-  </ul>
+    </li> -->
+    <accordion>
+      <accordion-group>
+          <a accordion-heading class="clearfix">
+              <span class="fa fa-home"></span>
+            Home
+          </a>
+        <ul>
+          <li><a href="#">Lorem ipsum</a></li>
+          <li><a href="#">ipsum dolor</a></li>
+          <li><a href="#">dolor ipsum</a></li>
+          <li><a href="#">amet consectetur</a></li>
+          <li><a href="#">ipsum dolor sit</a></li>
+        </ul>
+     
+      </accordion-group>
+      
+      <accordion-group>
+      <a accordion-heading class="clearfix">
+          <span class="fa fa-users"></span>
+        Clients
+      </a>
+    <ul>
+      <li><a href="#">Lorem ipsum</a></li>
+      <li><a href="#">ipsum dolor</a></li>
+      <li><a href="#">dolor ipsum</a></li>
+      <li><a href="#">amet consectetur</a></li>
+      <li><a href="#">ipsum dolor sit</a></li>
+    </ul>
+  </accordion-group>
+  <accordion-group>
+      <a accordion-heading class="clearfix">
+          <span class="fa fa-user-plus"></span>
+        Admin
+      </a>
+    <ul>
+      <li><a href="#">Lorem ipsum</a></li>
+      <li><a href="#">ipsum dolor</a></li>
+      <li><a href="#">dolor ipsum</a></li>
+      <li><a href="#">amet consectetur</a></li>
+      <li><a href="#">ipsum dolor sit</a></li>
+    </ul>
+  </accordion-group>
+  <accordion-group>
+      <a accordion-heading class="clearfix">
+          <span class="fa fa-file-text"></span>
+        Cases
+      </a>
+    <ul>
+      <li><a href="#">Lorem ipsum</a></li>
+      <li><a href="#">ipsum dolor</a></li>
+      <li><a href="#">dolor ipsum</a></li>
+      <li><a href="#">amet consectetur</a></li>
+      <li><a href="#">ipsum dolor sit</a></li>
+    </ul>
+  </accordion-group>
+    </accordion>
+
 </aside>

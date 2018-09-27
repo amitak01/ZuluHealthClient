@@ -18,6 +18,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {ChartModule} from 'primeng/chart';
+import {DataExchangeService} from './services/data-exchange.service';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {ChartModule} from 'primeng/chart';
     AngularFontAwesomeModule,
     ChartModule
   ],
-  providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard],
+  providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard,DataExchangeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
