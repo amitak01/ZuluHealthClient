@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataExchangeService} from '../services/data-exchange.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +11,9 @@ data:any;
 data1:any;
 data2:any;
 showDashboard:boolean=true;
+DashboardShow: boolean=true;
 
-  constructor() { 
+  constructor(private DEService: DataExchangeService) { 
     this.data2 = {
             labels: ['Facility1', 'Facility2', 'Facility3', 'Facility4', 'Facility5', 'Facility6', 'Facility6'],
             datasets: [
@@ -37,7 +39,12 @@ showDashboard:boolean=true;
                 }
             ]
         };
-  }
+        this.DEService.dashBoardMsg.subscribe(message => {
+      debugger;
+            this.DashboardShow = message;
+      
+          })
+    }
 
   ngOnInit() {
         this.data = {
@@ -87,6 +94,10 @@ showDashboard:boolean=true;
      selectData(event) {
     //  this.messageService.add({severity: 'info', summary: 'Data Selected', 'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
      }
+     redirectDashboard(value) {
+    
+        this.DashboardShow = value;
+      }
   }
 
 

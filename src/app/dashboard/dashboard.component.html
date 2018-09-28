@@ -1,9 +1,9 @@
 
- <app-sidebar></app-sidebar>
-<div  class="side_body">
+ <app-sidebar (redirectDashboard)="redirectDashboard($event)"></app-sidebar>
+ <section class="contents" id="side_body">
   <app-header></app-header>
 
-<div class="content" *ngIf="showDashboard">
+<div class="content" *ngIf="DashboardShow">
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -68,4 +68,4 @@
 
   <router-outlet></router-outlet>
 
-</div>
+</section>

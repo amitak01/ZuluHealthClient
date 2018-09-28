@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  NgZone,
+  ViewChild,
+  Output,
+  EventEmitter, TemplateRef
+} from '@angular/core';
 import {DataExchangeService} from '../../services/data-exchange.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,8 +16,9 @@ import {DataExchangeService} from '../../services/data-exchange.service';
 })
 export class SidebarComponent implements OnInit {
 
+  @Output() redirectDashboard=new EventEmitter<boolean>();
   toggleCount:any;
-  constructor(private DEServices:DataExchangeService) { }
+  constructor(private DEServices:DataExchangeService,private Router:Router) { }
 
   ngOnInit() {
     debugger;
@@ -21,5 +30,13 @@ export class SidebarComponent implements OnInit {
     })
     let t=this.toggleCount;
   }
+  GotoDashBoard() {
+    debugger;
+    //this.voted.emit(true);
+    this.DEServices.changeDashBoardMessage(true);
+ 
+     this.Router.navigate(['/dashboard']);
+ }
+
 
 }

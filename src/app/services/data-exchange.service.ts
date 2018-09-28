@@ -11,6 +11,9 @@ export class DataExchangeService {
   response:any=true;
   private countSource = new BehaviorSubject(false);
   currentResponse = this.countSource.asObservable();
+  //for dashboard
+  private dashBoardMessageSource = new BehaviorSubject(true);
+  dashBoardMsg = this.dashBoardMessageSource.asObservable();
   constructor() { }
 
 
@@ -18,6 +21,9 @@ export class DataExchangeService {
     debugger;
       this.countSource.next(check);
     }
+  changeDashBoardMessage(message: boolean) {
+  this.dashBoardMessageSource.next(message);
+   }
 
   
 }

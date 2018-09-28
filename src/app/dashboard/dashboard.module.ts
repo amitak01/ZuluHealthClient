@@ -16,6 +16,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { UpperCasePipe } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {ChartModule} from 'primeng/chart';
+import {TableModule} from 'primeng/table';
 import { ClientComponent } from './client/client.component';
 
 
@@ -33,7 +34,8 @@ import { ClientComponent } from './client/client.component';
         AccordionModule.forRoot(),
         AccordionModule,
         NgxSpinnerModule,
-        ChartModule
+        ChartModule,
+        TableModule
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent]
 })
