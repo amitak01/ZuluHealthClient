@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataExchangeService} from '../../services/data-exchange.service';
-import {Route,Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,12 +21,12 @@ export class HeaderComponent implements OnInit {
   ToggleSideBar() {
     if (this.Count % 2 === 0) {
       this.ShowToggles = true;
-      // document.getElementById('side_body').classList.remove('side_full_body');
+      document.getElementById('side_body').classList.remove('side_full_body');
 
 
     } else {
       this.ShowToggles = false;
-      // document.getElementById('side_body').classList.add('side_full_body');
+      document.getElementById('side_body').classList.add('side_full_body');
     
     }
     this.Count++;
@@ -35,10 +35,8 @@ export class HeaderComponent implements OnInit {
 
   LogOut(){
     debugger;
-    this.router.navigate(['./login']);
+    this.router.navigate(['/login']);
     localStorage.clear();
-   
-
-
+  
   }
 }

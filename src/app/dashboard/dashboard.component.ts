@@ -9,6 +9,7 @@ export class DashboardComponent implements OnInit {
 data:any;
 data1:any;
 data2:any;
+showDashboard:boolean=true;
 
   constructor() { 
     this.data2 = {

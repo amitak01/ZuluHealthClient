@@ -16,6 +16,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { UpperCasePipe } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {ChartModule} from 'primeng/chart';
+import { ClientComponent } from './client/client.component';
 
 
 
@@ -34,6 +35,6 @@ import {ChartModule} from 'primeng/chart';
         NgxSpinnerModule,
         ChartModule
   ],
-  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent]
+  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent]
 })
 export class DashboardModule { }
