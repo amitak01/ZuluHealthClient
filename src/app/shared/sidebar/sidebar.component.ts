@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
     this.DEServices.currentResponse.subscribe(message => {
       debugger;
       this.toggleCount = message==false?true:false;
-     // if(message)document.getElementById('side_body').classList.add('side_full_body');
+      if(message)document.getElementById('side_body').classList.add('side_full_body');
     })
     let t=this.toggleCount;
   }

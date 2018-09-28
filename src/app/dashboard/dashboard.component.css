@@ -58,3 +58,5 @@
     display: block;
     font-size: 18px;
   }
+  .content_body{margin-left: 290px;}
+  .content_body.side_full_body{margin-left:0px;}
