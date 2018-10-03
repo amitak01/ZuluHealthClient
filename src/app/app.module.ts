@@ -19,11 +19,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {ChartModule} from 'primeng/chart';
 import {DataExchangeService} from './services/data-exchange.service';
-
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
-    AppComponent 
+    AppComponent, 
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,9 @@ import {DataExchangeService} from './services/data-exchange.service';
     NgxSpinnerModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
-    ChartModule
+    ChartModule,
+    AngularMultiSelectModule,
+    MultiSelectModule,
   ],
   providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard,DataExchangeService],
   bootstrap: [AppComponent]

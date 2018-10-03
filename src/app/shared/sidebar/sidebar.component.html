@@ -76,19 +76,20 @@
     <ul>
       <li>  <a [routerLink]="['./client']" >
         Clients</a></li>
-      <li><a href="#">ipsum dolor</a></li>
+      <li><a [routerLink]="['/test1']" >test1</a></li>
       <li><a href="#">dolor ipsum</a></li>
       <li><a href="#">amet consectetur</a></li>
       <li><a href="#">ipsum dolor sit</a></li>
     </ul>
   </accordion-group>
   <accordion-group>
-      <a accordion-heading class="clearfix">
+      <a  accordion-heading class="clearfix">
           <span class="fa fa-user-plus"></span>
-        Admin
+        user
       </a>
     <ul>
-      <li><a href="#">Lorem ipsum</a></li>
+      <li>  <a [routerLink]="['./user']" >
+        user</a></li>
       <li><a href="#">ipsum dolor</a></li>
       <li><a href="#">dolor ipsum</a></li>
       <li><a href="#">amet consectetur</a></li>
