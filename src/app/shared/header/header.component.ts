@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
 
   
  GotoDashBoard() {
-  this.redirectDashboard.emit(true);
+ // this.redirectDashboard.emit(true);
    this.router.navigate(['/dashboard']);
 }
 
