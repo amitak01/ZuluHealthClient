@@ -1,0 +1,5 @@
+.main_heading.inline_block{display: inline-block;}
+.add_patient{float: right;}
+.btn.btn-primary.center-block{  margin-top: 23px;  background: #253b61; border: 1px solid #253b61;
+    font-size: 12px;}
+.btn.btn-primary.center-block i{padding-right: 7px;}

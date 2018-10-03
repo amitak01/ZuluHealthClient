@@ -6,6 +6,7 @@ import {ForgetPasswordComponent} from './forget-password/forget-password.compone
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'dashboard',
   loadChildren: './dashboard/dashboard.module#DashboardModule' },

@@ -18,6 +18,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import {ChartModule} from 'primeng/chart';
 import {TableModule} from 'primeng/table';
 import { ClientComponent } from './client/client.component';
+import { UserComponent } from './user/user.component';
+import {DropdownModule} from 'primeng/dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -35,8 +38,10 @@ import { ClientComponent } from './client/client.component';
         AccordionModule,
         NgxSpinnerModule,
         ChartModule,
-        TableModule
+        TableModule,
+        DropdownModule,
+        NgMultiSelectDropDownModule
   ],
-  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent]
+  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent]
 })
 export class DashboardModule { }

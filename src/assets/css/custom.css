@@ -153,5 +153,8 @@ body{padding: 0; margin:0 !important;}
 .btn.btn-primary.common_btn {  background: #253b61 none repeat scroll; color: #fff;  margin-left: 10px;  border-radius: 15px;
    border: none; padding: 4px 30px;}
 .modal-dialog.main_modal .modal-content  .modal-footer{ border-top:1px solid #cecede;}
+.full-width-drop{display: block; width: 100% !important;}
+.full-width-drop .ui-dropdown.ui-widget.ui-state-default.ui-corner-all{width: 100% !important; border-color: #ced4da; border-radius: 0;}
+.ui-dropdown-label.ui-inputtext.ui-corner-all{ font-size: 15px; color: #495057;}
 
 
