@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DashboardComponent} from '../dashboard.component';
 import {DataExchangeService} from '../../services/data-exchange.service';
 import {UserType,MyClients,Users} from '../../model/user';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -19,39 +20,62 @@ export class UserComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  constructor(private DEService:DataExchangeService) { 
+  addUserForm: FormGroup;
+  AssignClientForm:FormGroup;
+
+  constructor(private DEService:DataExchangeService, private fb:FormBuilder) { 
       this.DEService.changeDashBoardMessage(false);
+      this.userTypes = [
+        {UserTypeId: 1, UserTypeName: 'manager'},
+        {UserTypeId: 2, UserTypeName: 'supervisor'},
+        {UserTypeId: 3, UserTypeName: 'collector'},
+        {UserTypeId: 4, UserTypeName: 'biller'},
+        {UserTypeId: 5, UserTypeName: 'payment poster'},
+        {UserTypeId: 6, UserTypeName: 'client'},
+        {UserTypeId: 7, UserTypeName: 'coder'}
+ ];
+
+ this.addUserForm=fb.group({
+  FirstName:[null,Validators.required],
+  LastName:[null,Validators.required],
+  Email:[null,Validators.required],
+  PhoneNumber:[null,Validators.required],
+  City:[null,Validators.required],
+  UserType:[null,Validators.required],
+  State:[null,Validators.required],
+  Clients:[null,Validators.required],
+  Address1:[null,Validators.required],
+  PhoneNo:[null,Validators.required],
+});
+
+ this.AssignClientForm=fb.group({
+  selectedItems:[null,Validators.required]
+  })
   }
 
   ngOnInit() {
-   this.userTypes = [
-            {UserTypeId: 1, UserTypeName: 'manager'},
-            {UserTypeId: 2, UserTypeName: 'supervisor'},
-            {UserTypeId: 3, UserTypeName: 'collector'},
-            {UserTypeId: 4, UserTypeName: 'biller'},
-            {UserTypeId: 5, UserTypeName: 'payment poster'},
-            {UserTypeId: 6, UserTypeName: 'client'},
-            {UserTypeId: 7, UserTypeName: 'coder'}
-     ]
-
+debugger;
 
     this.users = [
       { FirstName: 'Rhonda', LastName: 'Riose', Email: 'apple@yopmail.com', PhoneNumber: '546456406.00',
-      Address : 'Street1,NJ1',City:'C1',UserType:'Manager',State:'St1' },
+      Address : 'Street1,NJ1',City:'C1',UserType:'Manager',State:'St1',Clients:'' },
       { FirstName: 'George', LastName: 'Niwu', Email: 'apple2@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Biller',State:'St2' },   
+      Address : 'Street2',City:'C2',UserType:'Biller',State:'St2',Clients:'' },   
     
       { FirstName: 'Kewin', LastName: 'Kenchusky', Email: 'apple@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Coder',State:'St2' },
+      Address : 'Street2',City:'C2',UserType:'Coder',State:'St2',Clients:'' },
       { FirstName: 'Miless', LastName: 'Frowen', Email: 'apple@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Client',State:'St2' },
+      Address : 'Street2',City:'C2',UserType:'Client',State:'St2',Clients:'' },
       { FirstName: 'Roase', LastName: 'Nister', Email: 'apple@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Collector',State:'St2' },
+      Address : 'Street2',City:'C2',UserType:'Collector',State:'St2',Clients:'' },
       { FirstName: 'Jille', LastName: 'Growic', Email: 'apple@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Supervisor',State:'St2' },
+      Address : 'Street2',City:'C2',UserType:'Supervisor',State:'St2',Clients:'' },
       { FirstName: 'Leno', LastName: 'Junus', Email: 'apple@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Manager',State:'St2' }
+      Address : 'Street2',City:'C2',UserType:'Manager',State:'St2',Clients:'' }
         ]
+
+  
+
   
   // multiselect
 

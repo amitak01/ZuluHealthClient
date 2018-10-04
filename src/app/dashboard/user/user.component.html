@@ -5,65 +5,60 @@
 
     
     </div></div>
-  <div class="row ">
-    <div class="col-sm-12">
-    <ng-multiselect-dropdown
-  [placeholder]="'custom placeholder'"
-  [data]="dropdownList"
-  [(ngModel)]="selectedItems"
-  [settings]="dropdownSettings"
-  (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)"
->
-</ng-multiselect-dropdown>
+    <div class="row ">
+        <div class="col-sm-12">
 
 <p-table [value]="users">
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
+            <th>Phone No</th>
             <th>Address</th>
-            <th>Company Name</th>
+            <th>User Type</th> 
+            <th>Clients</th>
+            <th>Action</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-client>
+    <ng-template pTemplate="body" let-users>
         <tr>
-            <td>{{client.FirstName+' '+client.LastName}}</td>
-            <td>{{client.Email}}</td>
-            <td>{{client.PhoneNumber}}</td>
-            <td>{{client.Address+', '+client.City+', '+client.State}}</td>
-            <td>{{client.CompanyName}}</td>
+            <td>{{users.FirstName+' '+users.LastName}}</td>
+            <td>{{users.PhoneNumber}}</td>
+            <td>{{users.Address+', '+users.City+', '+users.State}}</td>
+            <td>{{users.UserType}}</td>
+            <td>{{users.Clients}}</td>
+            <td><i class="fa fa-edit"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward"></i>
+             
+            </td>
         </tr>
     </ng-template>
 </p-table>
 
 
 
-<!-- line modal -->
+<!-- Add User Modal -->
 <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog main_modal modal-lg">
 	<div class="modal-content">
 		<div class="modal-header">
-			<h5 class="modal-title" id="lineModalLabel">Add Client</h5>
+			<h5 class="modal-title" id="lineModalLabel">Add Users</h5>
       			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 
 		</div>
 		<div class="modal-body">
 			
             <!-- content goes here -->
-			<form>
+            <form class="xenon_form" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
              <div class="row">
                <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" formControlName="FirstName">
               </div>
                </div>
                   <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Last Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" formControlName="LastName">
               </div>
                </div>
              </div>
@@ -71,13 +66,13 @@
                <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
               </div>
                </div>
                   <div class="col-sm-6">
                   <div class="form-group">
                <label for="exampleInputEmail1">User Type</label>
-                <p-dropdown [options]="userTypes" [(ngModel)]="selectedUserType" class="full-width-drop" optionLabel="UserTypeName"></p-dropdown>
+                <p-dropdown [options]="userTypes" formControlName="UserType" class="full-width-drop" optionLabel="UserTypeName"></p-dropdown>
           
               </div>
                </div>
@@ -86,32 +81,28 @@
                <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Address 1</label>
-           <textarea class="form-control rounded-0" rows="3"></textarea>
+           <textarea class="form-control rounded-0" rows="3" formControlName="Address1"></textarea>
               </div>
                </div>
-                  <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Address 2</label>
-     <textarea class="form-control rounded-0" rows="3"></textarea>              </div>
-               </div>
+                
              </div>
                 <div class="row">
                <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">City</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter City">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City" formControlName="City">
               </div>
                </div>
                   <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">State</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter State">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter State" formControlName="State">
               </div>
                </div>
                  <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Phone no</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
               </div>
                </div>
              </div>
@@ -133,4 +124,61 @@
 		</div>
 	</div>
   </div>
+</div>
+
+
+<!-- Assign Client to Users -->
+
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog main_modal modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="lineModalLabel">Add Users</h5>
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+  
+      </div>
+      <div class="modal-body">
+        
+         
+        <form class="AssignClientForm" role="form" [formGroup]="AssignClientForm" (ngSubmit)="AssignClient(AssignClientForm.value) && AssignClientForm.valid">
+            <div class="row">
+            <label for="inputEmail3" class="col-sm-12 control-label">Clients</label>
+            <div class="col-sm-12">
+                <ng-multiselect-dropdown
+                [placeholder]="'custom placeholder'"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                formControlName="selectedItems"
+              >
+              </ng-multiselect-dropdown>
+                     </div>
+          </div>         
+        
+          <div class="form-group last">
+            <div class="col-sm-12 text-center">
+              <button type="" class="btn btn-default LOGIN"> Save</button>   
+          </div>
+          </div>
+        </form>
+             
+  
+      </div>
+      <div class="modal-footer">
+      
+          
+        
+            <button type="button" id="delImage" class="btn btn-primary common_btn" data-dismiss="modal"  role="button">Cancel</button>
+          
+          
+            <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button>
+        
+        
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
 </div>

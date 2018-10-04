@@ -35,5 +35,6 @@ export class Users{
     City:string;
     State:string;
     PhoneNumber:string;
+    Clients:string;
     
 }
