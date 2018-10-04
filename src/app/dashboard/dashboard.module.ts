@@ -21,6 +21,7 @@ import { ClientComponent } from './client/client.component';
 import { UserComponent } from './user/user.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { PermissionsComponent } from './permissions/permissions.component';
 
 
 
@@ -42,6 +43,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         DropdownModule,
         NgMultiSelectDropDownModule
   ],
-  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent]
+  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent]
 })
 export class DashboardModule { }

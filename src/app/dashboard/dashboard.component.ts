@@ -40,7 +40,7 @@ DashboardShow: boolean=true;
             ]
         };
         this.DEService.dashBoardMsg.subscribe(message => {
-      debugger;
+      //debugger;
             this.DashboardShow = message;
       
           })

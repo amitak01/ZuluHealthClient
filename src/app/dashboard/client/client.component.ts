@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DashboardComponent} from '../dashboard.component'
 import {DataExchangeService} from '../../services/data-exchange.service'
 import {Clients} from '../../model/user'
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-client',
@@ -11,10 +12,30 @@ import {Clients} from '../../model/user'
 export class ClientComponent implements OnInit {
 
   clients: Clients[];
+  addUserForm: FormGroup;
+  AssignClientForm:FormGroup;
 
-  constructor(private DEService: DataExchangeService) {
+
+  constructor(private DEService: DataExchangeService, private fb:FormBuilder) { 
     debugger;
     this.DEService.changeDashBoardMessage(false);
+
+this.addUserForm=fb.group({
+  FirstName:[null,Validators.required],
+  LastName:[null,Validators.required],
+  Email:[null,Validators.required],
+  PhoneNumber:[null,Validators.required],
+  City:[null,Validators.required],
+  UserType:[null,Validators.required],
+  State:[null,Validators.required],
+  Clients:[null,Validators.required],
+  Address1:[null,Validators.required],
+  PhoneNo:[null,Validators.required],
+});
+
+ this.AssignClientForm=fb.group({
+  selectedItems:[null,Validators.required]
+  })
   //  this.dashboard.showDashboard=false;
    }
    
