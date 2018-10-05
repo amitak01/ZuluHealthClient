@@ -22,6 +22,7 @@ import {DataExchangeService} from './services/data-exchange.service';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';
 
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -40,6 +41,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
     ChartModule,
     AngularMultiSelectModule,
     MultiSelectModule,
+
   ],
   providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard,DataExchangeService],
   bootstrap: [AppComponent]

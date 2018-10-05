@@ -156,5 +156,5 @@ body{padding: 0; margin:0 !important;}
 .full-width-drop{display: block; width: 100% !important;}
 .full-width-drop .ui-dropdown.ui-widget.ui-state-default.ui-corner-all{width: 100% !important; border-color: #ced4da; border-radius: 0;}
 .ui-dropdown-label.ui-inputtext.ui-corner-all{ font-size: 15px; color: #495057;}
-
-
+input.ng-dirty.ng-invalid {border: 1px solid red !important;}
+  

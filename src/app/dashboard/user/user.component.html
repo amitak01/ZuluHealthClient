@@ -1,15 +1,51 @@
 <div class="container"><div class="container">
     <div  class="row"><div class="col-sm-12"><h4  class="main_heading inline_block">Users</h4>
 
-      <div class="add_patient"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-plus"></i>Add</button></div>
+      <div class="add_patient"><button class="btn btn-primary center-block" (click)="openModal(template)"><i class="fa fa-plus"></i>Add</button></div>
 
     
     </div></div>
     <div class="row ">
         <div class="col-sm-12">
 
-<p-table [value]="users">
+            <p-table #dt [columns]="cols" [value]="users" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">        
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+      
+                        </th>
+                        <th >
+                           Action
+                           
+                        </th>
+                    </tr>
+                  
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                        <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,rowData)"></i>
+             
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+<!-- 
+<p-table #dt [value]="users" [paginator]="true" [rows]="10">
+  
     <ng-template pTemplate="header">
+        
         <tr>
             <th>Name</th>
             <th>Phone No</th>
@@ -26,17 +62,99 @@
             <td>{{users.Address+', '+users.City+', '+users.State}}</td>
             <td>{{users.UserType}}</td>
             <td>{{users.Clients}}</td>
-            <td><i class="fa fa-edit"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward"></i>
+            <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(users,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(users,Deletetemplate)"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,users)"></i>
              
             </td>
         </tr>
     </ng-template>
-</p-table>
+</p-table> -->
 
 
 
 <!-- Add User Modal -->
-<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="addUserForm" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
+      <div class="row">
+        <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">First Name</label>
+         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" formControlName="FirstName">
+       </div>
+        </div>
+           <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Last Name</label>
+         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" formControlName="LastName">
+       </div>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Email</label>
+         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
+       </div>
+        </div>
+           <div class="col-sm-6">
+           <div class="form-group">
+        <label for="exampleInputEmail1">User Type</label>
+         <p-dropdown [options]="userTypes" formControlName="UserType" class="full-width-drop" optionLabel="UserTypeName"></p-dropdown>
+   
+       </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Address 1</label>
+    <textarea class="form-control rounded-0" rows="3" formControlName="Address1"></textarea>
+       </div>
+        </div>
+         
+      </div>
+         <div class="row">
+        <div class="col-sm-4">
+           <div class="form-group">
+         <label for="exampleInputEmail1">City</label>
+         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City" formControlName="City">
+       </div>
+        </div>
+           <div class="col-sm-4">
+           <div class="form-group">
+         <label for="exampleInputEmail1">State</label>
+         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter State" formControlName="State">
+       </div>
+        </div>
+          <div class="col-sm-4">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Phone no</label>
+         <input type="text"  [textMask]="{mask: mask}" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
+       </div>
+        </div>
+      </div>
+      <div class="form-group">
+
+ 
+       <button type="" class="btn btn-primary common_btn"> Save</button>
+       <button type="button" id="delImage" class="btn btn-primary common_btn" (click)="modalRef.hide()"  role="button">Cancel</button>
+
+     
+       <!-- <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button> -->
+   
+   
+ </div>
+</form>
+  </div>
+</ng-template>
+<!-- <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"  [ngStyle]="{'display':display}">
   <div class="modal-dialog main_modal modal-lg">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -46,8 +164,8 @@
 		</div>
 		<div class="modal-body">
 			
-            <!-- content goes here -->
-            <form class="xenon_form" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
+      
+            <form class="addUserForm" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
              <div class="row">
                <div class="col-sm-6">
                   <div class="form-group">
@@ -102,67 +220,82 @@
                  <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Phone no</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
+                <input type="text"  [textMask]="{mask: mask}" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
               </div>
                </div>
              </div>
-           
+             <div class="form-group">
+		
+				
+              <button type="" class="btn btn-primary common_btn"> Save</button>
+              <button type="button" id="delImage" class="btn btn-primary common_btn" data-dismiss="modal"  role="button">Cancel</button>
+    
+            
+            
+          
+        </div>
 			</form>
            
 
 		</div>
-		<div class="modal-footer">
-		
-				
-			
-					<button type="button" id="delImage" class="btn btn-primary common_btn" data-dismiss="modal"  role="button">Cancel</button>
-				
-				
-					<button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button>
-			
-			
-		</div>
+
 	</div>
   </div>
-</div>
+</div> -->
 
 
 <!-- Assign Client to Users -->
 
-<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+
+<ng-template #Assigntemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="assignmodalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="AssignClientForm" role="form" [formGroup]="AssignClientForm" (ngSubmit)="AssignClient(AssignClientForm.value) && AssignClientForm.valid">
+      <div class="row">
+      <label for="inputEmail3" class="col-sm-12 control-label">Clients</label>
+      <div class="col-sm-12">
+          <ng-multiselect-dropdown
+          [placeholder]="'custom placeholder'"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems"
+          [settings]="dropdownSettings"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          formControlName="selectedItems"
+        >
+        </ng-multiselect-dropdown>
+               </div>
+    </div>         
+  
+    <div class="form-group last">
+      <div class="col-sm-12 text-center">
+        <button type="button" id="delImage" class="btn btn-primary common_btn" (click)="assignmodalRef.hide()" role="button">Cancel</button>
+
+        <button type="" class="btn btn-primary common_btn"> Save</button>
+    
+    </div>
+    </div>
+  </form>
+  </div>
+</ng-template>
+
+<!-- <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog main_modal modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="lineModalLabel">Add Users</h5>
+        <h5 class="modal-title" id="lineModalLabel">Assign </h5>
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
   
       </div>
       <div class="modal-body">
         
          
-        <form class="AssignClientForm" role="form" [formGroup]="AssignClientForm" (ngSubmit)="AssignClient(AssignClientForm.value) && AssignClientForm.valid">
-            <div class="row">
-            <label for="inputEmail3" class="col-sm-12 control-label">Clients</label>
-            <div class="col-sm-12">
-                <ng-multiselect-dropdown
-                [placeholder]="'custom placeholder'"
-                [data]="dropdownList"
-                [(ngModel)]="selectedItems"
-                [settings]="dropdownSettings"
-                (onSelect)="onItemSelect($event)"
-                (onSelectAll)="onSelectAll($event)"
-                formControlName="selectedItems"
-              >
-              </ng-multiselect-dropdown>
-                     </div>
-          </div>         
         
-          <div class="form-group last">
-            <div class="col-sm-12 text-center">
-              <button type="" class="btn btn-default LOGIN"> Save</button>   
-          </div>
-          </div>
-        </form>
              
   
       </div>
@@ -170,15 +303,71 @@
       
           
         
-            <button type="button" id="delImage" class="btn btn-primary common_btn" data-dismiss="modal"  role="button">Cancel</button>
-          
-          
-            <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button>
-        
+         
         
       </div>
     </div>
     </div>
-  </div>
+  </div> -->
+
+  <!-- Delete confirmation -->
+
+  <ng-template #Deletetemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="deletemodalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+     
+        <div class="col-sm-12">
+            Are you sure you want to delete this user ?
+                 </div>
+      </div>         
+    
+      <div class="form-group last">
+        <div class="col-sm-12 text-center">
+          <button type="" class="btn btn-default common_btn" (click)="DeleteUsers()"> Yes</button>   
+          <button type="button" id="delImage" class="btn btn-primary common_btn" (click)="deletemodalRef.hide()"  role="button">No</button>
+
+      </div>
+    </div>
+    </div>
+  </ng-template>
+  <!-- <div class="modal fade" id="DeleteUserModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog main_modal modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="lineModalLabel">Delete Users</h5>
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+  
+      </div>
+      <div class="modal-body">
+        
+         
+           <div class="row">
+     
+            <div class="col-sm-12">
+                Are you sure you want to delete this user ?
+                     </div>
+          </div>         
+        
+          <div class="form-group last">
+            <div class="col-sm-12 text-center">
+              <button type="" class="btn btn-default common_btn" (click)="DeleteUsers()"> Yes</button>   
+              <button type="button" id="delImage" class="btn btn-primary common_btn" data-dismiss="modal"  role="button">No</button>
+
+          </div>
+          </div>
+
+             
+  
+      </div>
+    
+    </div>
+    </div>
+  </div> -->
 </div>
 </div>

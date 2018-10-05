@@ -21,6 +21,8 @@ import { ClientComponent } from './client/client.component';
 import { UserComponent } from './user/user.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 
 
@@ -40,7 +42,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         ChartModule,
         TableModule,
         DropdownModule,
-        NgMultiSelectDropDownModule
+        NgMultiSelectDropDownModule,
+        TextMaskModule,
+
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent]
 })
