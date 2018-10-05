@@ -158,3 +158,51 @@ body{padding: 0; margin:0 !important;}
 .ui-dropdown-label.ui-inputtext.ui-corner-all{ font-size: 15px; color: #495057;}
 input.ng-dirty.ng-invalid {border: 1px solid red !important;}
   
+/*Check Box Styling -------------------------*/
+
+.checkbox-custom {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-custom,
+.checkbox-custom-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.checkbox-custom-label {
+  position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before {
+  content: '';
+  background: #fff;
+  border: 2px solid #253b61;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 1;
+}
+
+/*Simply Change the content to any font awesome unicode here to add your own check icon*/
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  background:#253b61;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.checkbox-custom:focus + .checkbox-custom-label {
+  outline: 1px solid #ddd;
+  /* focus style */
+}
+
+

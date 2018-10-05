@@ -18,7 +18,7 @@ export class DataExchangeService {
 
 
   SaveToggleCount(check: boolean) {
-    debugger;
+    //debugger;
       this.countSource.next(check);
     }
   changeDashBoardMessage(message: boolean) {

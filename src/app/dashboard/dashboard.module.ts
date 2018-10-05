@@ -23,6 +23,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TextMaskModule } from 'angular2-text-mask';
 
+import { PermissionsComponent } from './permissions/permissions.component';
 
 
 
@@ -46,6 +47,6 @@ import { TextMaskModule } from 'angular2-text-mask';
         TextMaskModule,
 
   ],
-  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent]
+  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent]
 })
 export class DashboardModule { }

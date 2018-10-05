@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div  class="row"><div class="col-sm-12"><h4  class="main_heading inline_block">Clients</h4>
       <div class="add_patient"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-plus"></i>Add</button></div>
 
@@ -41,19 +41,19 @@
 		</div>
 		<div class="modal-body">
 			
-            <!-- content goes here -->
-			<form>
+        <!-- content goes here -->
+            <form class="xenon_form" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
              <div class="row">
                <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" formControlName="FirstName">
               </div>
                </div>
                   <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Last Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" formControlName="LastName">
               </div>
                </div>
              </div>
@@ -61,49 +61,47 @@
                <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
               </div>
                </div>
-                  <div class="col-sm-6">
+                     <div class="col-sm-6">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Company Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Company Name">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
               </div>
                </div>
              </div>
-                   <div class="row">
-               <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Address 1</label>
-           <textarea class="form-control rounded-0" rows="3"></textarea>
-              </div>
-               </div>
-                  <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Address 2</label>
-     <textarea class="form-control rounded-0" rows="3"></textarea>              </div>
-               </div>
-             </div>
+                
                 <div class="row">
                <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">City</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter City">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City" formControlName="City">
               </div>
                </div>
                   <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">State</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter State">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter State" formControlName="State">
               </div>
                </div>
                  <div class="col-sm-4">
                   <div class="form-group">
                 <label for="exampleInputEmail1">Phone no</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
               </div>
                </div>
              </div>
+                <div class="row">
+               <div class="col-sm-6">
+                  <div class="form-group">
+                <label for="exampleInputEmail1">Address 1</label>
+           <textarea class="form-control rounded-0" rows="3" formControlName="Address1"></textarea>
+              </div>
+               </div>
+                
+             </div>
+           
 			</form>
            
 
