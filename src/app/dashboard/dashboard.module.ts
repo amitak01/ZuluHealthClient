@@ -22,9 +22,10 @@ import { UserComponent } from './user/user.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TextMaskModule } from 'angular2-text-mask';
-
+import {CheckboxModule} from 'primeng/checkbox';
 import { PermissionsComponent } from './permissions/permissions.component';
-
+import { CasesComponent } from './cases/cases.component';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
@@ -45,8 +46,10 @@ import { PermissionsComponent } from './permissions/permissions.component';
         DropdownModule,
         NgMultiSelectDropDownModule,
         TextMaskModule,
+        CheckboxModule,
+        FileUploadModule
 
   ],
-  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent]
+  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent, CasesComponent]
 })
 export class DashboardModule { }

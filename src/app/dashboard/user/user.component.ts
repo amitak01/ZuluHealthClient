@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -138,7 +139,7 @@ debugger;
     Address:usersData.Address1,City:usersData.City,Email:usersData.Email,PhoneNumber:usersData.PhoneNo,
     UserType:usersData.UserType.UserTypeName,Clients:"",State:usersData.State
     });
-
+  this.toastr.success("User Added Successfully !");
   }
   else{
     let currentUser=usersData;
@@ -161,6 +162,7 @@ debugger;
       }
 
    });
+   this.toastr.success("User Updated Successfully !");
   }
     this.modalRef.hide();
    
@@ -182,6 +184,7 @@ debugger;
       }
     });
     this.users=usersArray;
+    this.toastr.success("User Deleted Successfully !");
     this.deletemodalRef.hide();
    }
 
@@ -239,6 +242,7 @@ debugger;
         item.Clients=selectedClients;
       }
     });
+    this.toastr.success("Client Assigned Successfully !");
    this.assignmodalRef.hide();
 
   }

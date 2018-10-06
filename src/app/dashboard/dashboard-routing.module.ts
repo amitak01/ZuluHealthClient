@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import {ClientComponent} from './client/client.component';
 import {UserComponent} from './user/user.component';
 import {PermissionsComponent} from './permissions/permissions.component';
+import {CasesComponent} from './cases/cases.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,9 @@ const routes: Routes = [
     children: [
       { path: 'client', component: ClientComponent },
       { path: 'user', component: UserComponent },
-     { path: 'permissions', component: PermissionsComponent},
+      { path: 'permission', component: PermissionsComponent},
+      { path: 'case', component: CasesComponent},
+
      
   
 

@@ -1,11 +1,23 @@
 <aside class="side-nav" id="show-side-navigation1" *ngIf="toggleCount">
   <!-- <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i> -->
-  <div class="heading text-center">
-    <div class="info"  routerLink="/dashboard" (click)="GotoDashBoard()">
-      <img src="assets/images/logo_small.png">
-    </div>
-  </div>
-  
+  <!-- <div class="heading text-center">
+   
+  </div> -->
+  <ul class="categories">
+    <li class=""> <a >
+        <span class="fa fa-home"></span>
+      Home
+    </a></li>
+    <li>  <a [routerLink]="['./client']" >
+      Clients</a></li>
+  <li>  <a [routerLink]="['./permission']" >
+      permission</a></li>
+      <li>  <a [routerLink]="['./user']" >
+        user</a></li>
+        <li [routerLink]="['./case']" >  <a >
+          case</a></li>
+        
+  </ul> 
   <!-- <ul class="categories"></ul> -->
     <!-- <li class="active"><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="#"> About us</a>
       <ul class="side-nav-dropdown">
@@ -52,7 +64,7 @@
         <li><a href="#">ipsum dolor sit</a></li>
       </ul>
     </li> -->
-    <accordion>
+    <!-- <accordion>
       <accordion-group class="active">
           <a accordion-heading class="clearfix">
               <span class="fa fa-home"></span>
@@ -110,6 +122,6 @@
       <li><a href="#">ipsum dolor sit</a></li>
     </ul>
   </accordion-group>
-    </accordion>
+    </accordion> -->
 
 </aside>

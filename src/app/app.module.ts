@@ -23,9 +23,10 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 import {MultiSelectModule} from 'primeng/multiselect';
 
 
+
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent
   ],
   imports: [
     BrowserModule,

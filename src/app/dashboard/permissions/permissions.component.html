@@ -4,6 +4,8 @@
   </div>
   
   </div>
+
+  <div class="shadow_body">
   <div class="row">
    
             <div class="col-sm-4">
@@ -13,23 +15,32 @@
           
               </div>
                </div>
-               <div class="col-sm-4">
+               <!-- <div class="col-sm-4">
                   <div class="form-group">
                <label for="exampleInputEmail1">User </label>
-                <p-dropdown [options]="userTypes" class="full-width-drop" optionLabel="UserTypeName"></p-dropdown>
+                <p-dropdown [options]="UserPermission" class="full-width-drop" optionLabel="UserName"></p-dropdown>
           
               </div>
-               </div>
+               </div> -->
                
   </div>
   <div class="row">
     <div class="col-sm-4">
          <div>
-          <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" checked>
-          <label for="checkbox-1" class="checkbox-custom-label">First Item</label>
+          <!-- <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" checked> -->
+          <li *ngFor="let permission of permissions">
+              <div class="ui-g">
+              <div class="ui-g-12">  <p-checkbox name="groupname" value={{permission.PermissionId}} label={{permission.Title}} [(ngModel)]="selectedValues"></p-checkbox></div>
+          
+          <!-- <label for="checkbox-1" class="checkbox-custom-label">First Item</label> -->
         </div>
+</div>
+<div>
+   
+    <button type="" class="btn btn-primary common_btn" (click)="SavePermission($event)"> Save</button>
 </div>
     </div>
   </div>
-
+  
+</div>
    
