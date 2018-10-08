@@ -3,4 +3,5 @@ export class cases{
     Title:string;
     CompanyName:string;
     UserType:string;
+    status:string;
 }

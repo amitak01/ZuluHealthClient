@@ -9,7 +9,18 @@
     <div class="col-sm-12">
       
 
-<!-- <p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
+
+
+<!-- tab view -->
+<div>
+  
+    <!--<p>
+    
+    </p>-->
+    <!--<hr/>-->
+    <tabset #staticTabs>
+      <tab heading="In Billing">
+ <p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
         <div class="search_input" style="text-align: right">        
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -42,20 +53,46 @@
      
         </tr>
     </ng-template>
-</p-table> -->
+</p-table> 
 
-<!-- tab view -->
-<div>
-    <p>Tabs can be enabled or disabled by changing <code>disabled</code> input property</p>
-    <p>
-      <button type="button" class="btn btn-primary btn-sm" (click)="disableEnable()">
-        Enable / Disable third tab
-      </button>
-    </p>
-    <hr/>
-    <tabset #staticTabs>
-      <tab heading="Static title">Static content</tab>
-      <tab heading="Static Title 1">Static content 1</tab>
+      </tab>
+      <tab heading="In Coding">
+<p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+        <div class="search_input" style="text-align: right">        
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+
+            </th>
+            <th >
+               Action
+               
+            </th>
+        </tr>
+      
+    </ng-template>
+   
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+            <td><i class="fa fa-upload" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-download"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+ 
+            </td>
+     
+        </tr>
+    </ng-template>
+</p-table> 
+
+      </tab>
       <tab heading="Static Title 2">Static content 2</tab>
       <tab heading="Static Title 3">Static content 3</tab>
     </tabset>

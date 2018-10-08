@@ -50,7 +50,7 @@ import { TabsModule } from 'ngx-bootstrap';
         TextMaskModule,
         CheckboxModule,
         FileUploadModule,
-        TabsModule
+        TabsModule.forRoot()
 
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent, CasesComponent]
