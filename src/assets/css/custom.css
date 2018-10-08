@@ -187,17 +187,19 @@ input.ng-dirty.ng-invalid {border: 1px solid red !important;}
   vertical-align: middle;
   width: 20px;
   height: 20px;
+  border-radius: 0 !important;
   margin-right: 10px;
   text-align: center;
   line-height: 1;
 }
-
+.ui-chkbox .ui-chkbox-box{ border-radius: 0 !important;}
 /*Simply Change the content to any font awesome unicode here to add your own check icon*/
 .checkbox-custom:checked + .checkbox-custom-label:before {
   content: "\f00c";
   font-family: 'FontAwesome';
   background:#253b61;
   color: #fff;
+  border-radius: 0 ;
   text-align: center;
   vertical-align: middle;
 }
@@ -209,7 +211,8 @@ input.ng-dirty.ng-invalid {border: 1px solid red !important;}
 .search_input input{width: auto; border: 1px solid #ccc; padding: 5px;}
 .search_input{position:relative;}
 .search_input i{position:absolute; right:10px; top:6px;}
-.modal-dialog{max-width:700px;}
+.modal-dialog{max-width:700px;position: relative; top:45px;}
 .mar_tp_20{margin-top: 20px;}
 .shadow_body {background: #fff;border-radius: 4px; padding: 10px;}
 .content_body {padding-top:54px;}
+.cursor{cursor: pointer;}

@@ -4,20 +4,12 @@
    
   </div> -->
   <ul class="categories">
-    <li class=""> <a >
-        <span class="fa fa-home"></span>
-      Home
-    </a></li>
-    <li>  <a [routerLink]="['./client']" >
-      Clients</a></li>
-  <li>  <a [routerLink]="['./permission']" >
-      permission</a></li>
-      <li>  <a [routerLink]="['./user']" >
-        user</a></li>
-        <li [routerLink]="['./case']" >  <a >
-          case</a></li>
-        
-  </ul> 
+    <li class="cursor"  (click)="GotoDashBoard()"> <a ><span class="fa fa-home"></span>Home</a></li>
+    <li class="cursor" [routerLink]="['./client']"><a ><span class="fa fa-user"> </span>Clients</a></li>
+    <li class="cursor" [routerLink]="['./permission']"><a ><span class="fa fa-edit"> </span>permission</a></li>
+    <li class="cursor" [routerLink]="['./user']" ><a><span class="fa fa-users"> </span>users</a></li>
+    <li class="cursor" [routerLink]="['./case']" ><a><span class="fa fa-file"></span>case</a></li>
+</ul> 
   <!-- <ul class="categories"></ul> -->
     <!-- <li class="active"><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="#"> About us</a>
       <ul class="side-nav-dropdown">

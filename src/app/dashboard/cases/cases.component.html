@@ -9,7 +9,7 @@
     <div class="col-sm-12">
       
 
-<p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
+<!-- <p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
         <div class="search_input" style="text-align: right">        
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -36,110 +36,106 @@
             <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
             </td>
-            <!-- <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,rowData)"></i>
+            <td><i class="fa fa-upload" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-download"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
  
-            </td> -->
-            <td>
-                <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="myUploader($event)"></p-fileUpload>
-           
-              </td>
+            </td>
+     
         </tr>
     </ng-template>
-</p-table>
+</p-table> -->
 
-
-<!-- add/edit client -->
-
-
-<!-- line modal -->
-<!-- <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog main_modal modal-lg">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="lineModalLabel">Add Client</h5>
-      			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-
-		</div>
-		<div class="modal-body">
-			
-            <form class="xenon_form" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
-             <div class="row">
-               <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">First Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" formControlName="FirstName">
-              </div>
-               </div>
-                  <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Last Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" formControlName="LastName">
-              </div>
-               </div>
-             </div>
-              <div class="row">
-               <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
-              </div>
-               </div>
-                     <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Company Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
-              </div>
-               </div>
-             </div>
-                
-                <div class="row">
-               <div class="col-sm-4">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">City</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City" formControlName="City">
-              </div>
-               </div>
-                  <div class="col-sm-4">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">State</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter State" formControlName="State">
-              </div>
-               </div>
-                 <div class="col-sm-4">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Phone no</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
-              </div>
-               </div>
-             </div>
-                <div class="row">
-               <div class="col-sm-6">
-                  <div class="form-group">
-                <label for="exampleInputEmail1">Address 1</label>
-           <textarea class="form-control rounded-0" rows="3" formControlName="Address1"></textarea>
-              </div>
-               </div>
-                
-             </div>
-           
-			</form>
-           
-
-		</div>
-		<div class="modal-footer">
-		
-				
-			
-					<button type="button" id="delImage" class="btn btn-primary common_btn" data-dismiss="modal"  role="button">Cancel</button>
-				
-				
-					<button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button>
-			
-			
-		</div>
-	</div>
+<!-- tab view -->
+<div>
+    <p>Tabs can be enabled or disabled by changing <code>disabled</code> input property</p>
+    <p>
+      <button type="button" class="btn btn-primary btn-sm" (click)="disableEnable()">
+        Enable / Disable third tab
+      </button>
+    </p>
+    <hr/>
+    <tabset #staticTabs>
+      <tab heading="Static title">Static content</tab>
+      <tab heading="Static Title 1">Static content 1</tab>
+      <tab heading="Static Title 2">Static content 2</tab>
+      <tab heading="Static Title 3">Static content 3</tab>
+    </tabset>
   </div>
-</div> -->
+
+
+<!-- upload cases -->
+<div class="modal-sm">
+    <ng-template #uploadCaseTemplate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Upload Document</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="uploadmodalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body  text-center">
+        <div class="row">
+       
+          <div class="col-sm-12">
+              <p-fileUpload name="demo[]" (onUpload)="onUpload($event)"
+              multiple="multiple" accept="image/*" maxFileSize="1000000">
+          <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+          </ng-template>
+      </p-fileUpload>
+                   </div>
+        </div>         
+      
+        <!-- <div class="form-group last mar_tp_20">
+          <div class="col-sm-12 ">
+            <button type="" class="btn btn-primary common_btn" (click)="DeleteClient()"> Yes</button>   
+            <button type="button" id="delImage" class="btn btn-primary common_btn" (click)="deletemodalRef.hide()"  role="button">No</button>
+  
+        </div>
+      </div> -->
+      </div>
+    </ng-template>
+   
+  </div>
+
+
+  <!-- download cases -->
+<div class="modal-sm">
+    <ng-template #downloadCaseTemplate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Download Document</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="downloadmodalref.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body  text-center">
+        <div class="row">
+       
+          <div class="col-sm-12">
+          
+              <p-table [value]="files">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th>Title</th>  
+                          <th>Action</th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-files>
+                      <tr>
+                          <td>{{files.Title}}</td>
+                          <td (click)="downloadFile()"> <i class="fa fa-download"></i></td>
+                          
+                      </tr>
+                  </ng-template>
+              </p-table>
+
+          </div>
+        </div>         
+      
+      </div>
+    </ng-template>
+   
+  </div>
 
   </div>
 

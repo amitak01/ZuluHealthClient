@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import {DataExchangeService} from '../services/data-exchange.service';
 
 
 
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
 };
 
 
-  constructor(private toastr: ToastrService, private fb: FormBuilder, 
+  constructor(private toastr: ToastrService, private fb: FormBuilder, private DEServices:DataExchangeService,
               private router: Router,private appSettings: AppSettingsService, 
               private authenticationService: AuthenticationService,private route: ActivatedRoute, 
               private modalService: BsModalService) { 
@@ -61,6 +62,8 @@ export class LoginComponent implements OnInit {
         let test=data;
         if(data.result==true){
           this.toastr.success('Login Successfully');
+          this.DEServices.changeDashBoardMessage(true);
+ 
           this.router.navigate(['/dashboard']);
         }
         else{

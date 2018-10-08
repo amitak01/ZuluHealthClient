@@ -26,6 +26,8 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { CasesComponent } from './cases/cases.component';
 import {FileUploadModule} from 'primeng/fileupload';
+import { TabsModule } from 'ngx-bootstrap';
+
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import {FileUploadModule} from 'primeng/fileupload';
         NgMultiSelectDropDownModule,
         TextMaskModule,
         CheckboxModule,
-        FileUploadModule
+        FileUploadModule,
+        TabsModule
 
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent, CasesComponent]

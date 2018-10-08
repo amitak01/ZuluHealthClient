@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div  class="row"><div class="col-sm-12"><h4  class="main_heading inline_block">Clients</h4>
-      <div class="add_patient"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-plus"></i>Add</button></div>
+      <div class="add_patient"><button data-toggle="modal"  class="btn btn-primary center-block" (click)="openModal(template)"><i class="fa fa-plus"></i>Add</button></div>
 
     
     </div></div>
@@ -34,7 +34,7 @@
             <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
             </td>
-            <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,rowData)"></i>
+            <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i>
  
             </td>
         </tr>
@@ -46,7 +46,8 @@
 <ng-template #template class="modal-lg">
   
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left" *ngIf="!IsEditUsers">Add Client</h4>
+      <h4 class="modal-title pull-left"  *ngIf="IsEditUsers">Edit Client</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -116,7 +117,7 @@
   
    
          <button type="" class="btn btn-primary common_btn"> Save</button>
-         <button type="button" id="delImage" class="btn btn-primary common_btn" (click)="modalRef.hide()"  role="button">Cancel</button>
+         <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="modalRef.hide()"  role="button">Cancel</button>
   
        
          <!-- <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button> -->
@@ -223,7 +224,7 @@
 <div class="modal-sm">
     <ng-template #Deletetemplate>
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete User</h4>
+        <h4 class="modal-title pull-left">Delete Client</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="deletemodalRef.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -239,7 +240,7 @@
         <div class="form-group last mar_tp_20">
           <div class="col-sm-12 ">
             <button type="" class="btn btn-primary common_btn" (click)="DeleteClient()"> Yes</button>   
-            <button type="button" id="delImage" class="btn btn-primary common_btn" (click)="deletemodalRef.hide()"  role="button">No</button>
+            <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="deletemodalRef.hide()"  role="button">No</button>
   
         </div>
       </div>

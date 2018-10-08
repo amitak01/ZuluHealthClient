@@ -25,10 +25,10 @@
                
   </div>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4" *ngFor="let permission of permissions">
          <div>
           <!-- <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" checked> -->
-          <li *ngFor="let permission of permissions">
+          <li >
               <div class="ui-g">
               <div class="ui-g-12">  <p-checkbox name="groupname" value={{permission.PermissionId}} label={{permission.Title}} [(ngModel)]="selectedValues"></p-checkbox></div>
           
@@ -37,10 +37,15 @@
 </div>
 <div>
    
-    <button type="" class="btn btn-primary common_btn" (click)="SavePermission($event)"> Save</button>
+   
 </div>
     </div>
+
   </div>
-  
+  <div class="row">
+    <div class="col-sm-12 mar_tp_20 text-right">
+        <button type="" class="btn btn-primary common_btn" (click)="SavePermission($event)"> Save</button>
+    </div>
+  </div>
 </div>
    

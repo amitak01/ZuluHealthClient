@@ -1,7 +1,7 @@
 .side-nav {
   float: left;
   height: 100%;
-  width: 290px;
+  width: 250px;
   background: #253b61;
   color: #333;
   -webkit-transform: translateX(0);
@@ -110,12 +110,12 @@
     margin-right: 5px;
     color:#7d8aa1;
   }
-  .categories li{   border-right: 2px solid #fff;}
+
   .side-nav .categories> li:hover> a ,  .side-nav .categories> li:hover> i ,.side-nav .categories > li:hover > a:after, 
   .side-nav .categories> .active> a ,  .side-nav .categories> .active > i ,.side-nav .categories > .active > a:after
   { color:#253b61;}
   .categories .active , .categories li:hover{ background: #eaeaf3;
-    border-right: 2px solid #253b61;}
+    }
   /* .side-nav .categories > li > a:after {
     content: "\f053";
     font-family: fontAwesome;

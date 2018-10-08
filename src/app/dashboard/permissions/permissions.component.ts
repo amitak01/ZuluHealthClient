@@ -39,7 +39,24 @@ export class PermissionsComponent implements OnInit {
   {PermissionId: 4,Title:'Set User Permissions'},
   {PermissionId: 5,Title:'Set Client Permissions'},
   {PermissionId: 6,Title:'Set Up Client '},
-  {PermissionId: 7,Title:'Assign Client to User'}
+  {PermissionId: 7,Title:'Add Correction For Billing'},
+  {PermissionId: 8,Title:'Close Correction for Billing '},
+  {PermissionId: 9,Title:'Edit Correction For Billing'},
+  {PermissionId: 10,Title:'Management Resolution for Billing '},
+  {PermissionId: 11,Title:'Update Correction Status for Billing'},
+  {PermissionId: 12,Title:'Enter Coding into ZuluFlow '},
+  {PermissionId: 13,Title:'Edit Coding into ZuluFlow'},
+  {PermissionId: 14,Title:'Add Claim Issue'},
+  {PermissionId: 15,Title:'Edit Claim Issue'},
+  {PermissionId: 16,Title:'Add Comment to Claim Issue'},
+  {PermissionId: 17,Title:'Close Claim Issue'},
+  {PermissionId: 18,Title:'Open Claim Issue'},
+  {PermissionId: 19,Title:'Add Missing Remit Issue'},
+  {PermissionId: 20,Title:'Edit Missing Remit Issue'},
+  {PermissionId: 21,Title:'Override Missing Remit Issue'},
+  {PermissionId: 22,Title:'Open Missing Remit Issue'},
+  {PermissionId: 23,Title:'Close Missing Remit Issue'}
+
  ];
   
 //  this.UserPermission=[
@@ -64,7 +81,7 @@ export class PermissionsComponent implements OnInit {
  ];
   }
 
-  SavePermission(){
+  SavePermission(data){
     
   }
 
