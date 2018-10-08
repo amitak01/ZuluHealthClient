@@ -3,5 +3,10 @@ export class cases{
     Title:string;
     CompanyName:string;
     UserType:string;
-    status:string;
+    Status:string;
+    Comment:string;
+}
+export class CaseStatus{
+    StatusId:number;
+    StatusTitle:string;
 }

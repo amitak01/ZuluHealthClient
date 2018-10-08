@@ -27,6 +27,7 @@ import { PermissionsComponent } from './permissions/permissions.component';
 import { CasesComponent } from './cases/cases.component';
 import {FileUploadModule} from 'primeng/fileupload';
 import { TabsModule } from 'ngx-bootstrap';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 
 
@@ -50,7 +51,8 @@ import { TabsModule } from 'ngx-bootstrap';
         TextMaskModule,
         CheckboxModule,
         FileUploadModule,
-        TabsModule.forRoot()
+        TabsModule.forRoot(),
+        InputTextareaModule
 
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent, CasesComponent]

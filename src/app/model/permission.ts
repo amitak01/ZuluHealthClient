@@ -14,5 +14,4 @@ export class UserSelectedPerssion{
     PermissionId:number;
     Title:string;
     UserType:string;
-
 }

@@ -18,9 +18,9 @@
     
     </p>-->
     <!--<hr/>-->
-    <tabset #staticTabs>
-      <tab heading="In Billing">
- <p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
+    <tabset #staticTabs class="ng-tabs">
+      <tab heading="Missing Doc–Op Notes">
+ <p-table #dt [columns]="cols" [value]="casesListBilling" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
         <div class="search_input" style="text-align: right">        
             <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -34,7 +34,7 @@
                 <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 
             </th>
-            <th >
+            <th>
                Action
                
             </th>
@@ -44,10 +44,46 @@
    
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
+            <!-- <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
+            </td> -->
+            <td>
+                        {{rowData.Title}}    
             </td>
-            <td><i class="fa fa-upload" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-download"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+            <td>                
+                        {{rowData.CompanyName}}
+            </td>
+            <td>               
+                        {{rowData.UserType}}
+            </td>
+           
+            <td pEditableColumn>
+                <p-cellEditor class="cursor">
+                    <ng-template pTemplate="input">
+
+                        <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+   
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.Status}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn  class="cursor">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                   
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.Comment}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                 &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                 &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
  
             </td>
      
@@ -56,45 +92,513 @@
 </p-table> 
 
       </tab>
+     
+            <tab heading="Missing Doc–InCoding">
+       <p-table #dt [columns]="cols" [value]="casesListMissingDocCode" [paginator]="true" [rows]="10">
+          <ng-template pTemplate="caption">
+              <div class="search_input" style="text-align: right">        
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                  <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+              </div>
+          </ng-template>
+          <ng-template pTemplate="header" let-columns>
+              <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+      
+                  </th>
+                  <th>
+                     Action
+                     
+                  </th>
+              </tr>
+            
+          </ng-template>
+         
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr [pSelectableRow]="rowData">
+                  <!-- <td *ngFor="let col of columns">
+                      {{rowData[col.field]}}
+                  </td> -->
+                  <td>
+                              {{rowData.Title}}    
+                  </td>
+                  <td>                
+                              {{rowData.CompanyName}}
+                  </td>
+                  <td>               
+                              {{rowData.UserType}}
+                  </td>
+                 
+                  <td pEditableColumn  class="cursor">
+                      <p-cellEditor>
+                          <ng-template pTemplate="input">
+      
+                              <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+         
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                              {{rowData.Status}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+      
+                  <td pEditableColumn  class="cursor">
+                      <p-cellEditor>
+                          <ng-template pTemplate="input">
+                              <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                         
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                              {{rowData.Comment}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+                  <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                       &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                       &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+       
+                  </td>
+           
+              </tr>
+          </ng-template>
+      </p-table> 
+      
+            </tab>
       <tab heading="In Coding">
-<p-table #dt [columns]="cols" [value]="casesList" [paginator]="true" [rows]="10">
-    <ng-template pTemplate="caption">
-        <div class="search_input" style="text-align: right">        
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-
-            </th>
-            <th >
-               Action
-               
-            </th>
-        </tr>
-      
-    </ng-template>
-   
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-            <td><i class="fa fa-upload" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-download"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
- 
-            </td>
-     
-        </tr>
-    </ng-template>
-</p-table> 
+        <p-table #dt [columns]="cols" [value]="casesListInCoding" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div class="search_input" style="text-align: right">        
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        
+                    </th>
+                    <th>
+                       Action
+                       
+                    </th>
+                </tr>
+              
+            </ng-template>
+           
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <!-- <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td> -->
+                    <td>
+                                {{rowData.Title}}    
+                    </td>
+                    <td>                
+                                {{rowData.CompanyName}}
+                    </td>
+                    <td>               
+                                {{rowData.UserType}}
+                    </td>
+                   
+                    <td pEditableColumn  class="cursor">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+        
+                                <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+           
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.Status}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+        
+                    <td pEditableColumn  class="cursor">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                           
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.Comment}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                         &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                         &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+         
+                    </td>
+             
+                </tr>
+            </ng-template>
+        </p-table> 
 
       </tab>
-      <tab heading="Static Title 2">Static content 2</tab>
-      <tab heading="Static Title 3">Static content 3</tab>
+      <tab heading="Recieved"> 
+          <p-table #dt [columns]="cols" [value]="casesListRecieved" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+            <div class="search_input" style="text-align: right">        
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+    
+                </th>
+                <th>
+                   Action
+                   
+                </th>
+            </tr>
+          
+        </ng-template>
+       
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <!-- <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td> -->
+                <td>
+                            {{rowData.Title}}    
+                </td>
+                <td>                
+                            {{rowData.CompanyName}}
+                </td>
+                <td>               
+                            {{rowData.UserType}}
+                </td>
+               
+                <td pEditableColumn  class="cursor">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+    
+                            <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+       
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.Status}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+    
+                <td pEditableColumn  class="cursor">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                       
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.Comment}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                     &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                     &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+     
+                </td>
+         
+            </tr>
+        </ng-template>
+    </p-table> </tab>
+      <tab heading="Coding Ready">
+            <p-table #dt [columns]="cols" [value]="casesListCodingReady" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="search_input" style="text-align: right">        
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                
+                            </th>
+                            <th>
+                               Action
+                               
+                            </th>
+                        </tr>
+                      
+                    </ng-template>
+                   
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <!-- <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td> -->
+                            <td>
+                                        {{rowData.Title}}    
+                            </td>
+                            <td>                
+                                        {{rowData.CompanyName}}
+                            </td>
+                            <td>               
+                                        {{rowData.UserType}}
+                            </td>
+                           
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                
+                                        <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Status}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Comment}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+                 
+                            </td>
+                     
+                        </tr>
+                    </ng-template>
+                </p-table> 
+      </tab>
+      <tab heading="Charges Entered">
+            <p-table #dt [columns]="cols" [value]="casesListChargeEntry" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="search_input" style="text-align: right">        
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                
+                            </th>
+                            <th>
+                               Action
+                               
+                            </th>
+                        </tr>
+                      
+                    </ng-template>
+                   
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <!-- <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td> -->
+                            <td>
+                                        {{rowData.Title}}    
+                            </td>
+                            <td>                
+                                        {{rowData.CompanyName}}
+                            </td>
+                            <td>               
+                                        {{rowData.UserType}}
+                            </td>
+                           
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                
+                                        <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Status}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Comment}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+                 
+                            </td>
+                     
+                        </tr>
+                    </ng-template>
+                </p-table> 
+      </tab>
+      <tab heading="Claim Billed">
+            <p-table #dt [columns]="cols" [value]="casesListClaimBilled" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="search_input" style="text-align: right">        
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                
+                            </th>
+                            <th>
+                               Action
+                               
+                            </th>
+                        </tr>
+                      
+                    </ng-template>
+                   
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <!-- <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td> -->
+                            <td>
+                                        {{rowData.Title}}    
+                            </td>
+                            <td>                
+                                        {{rowData.CompanyName}}
+                            </td>
+                            <td>               
+                                        {{rowData.UserType}}
+                            </td>
+                           
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                
+                                        <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Status}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Comment}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td><i class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+                 
+                            </td>
+                     
+                        </tr>
+                    </ng-template>
+                </p-table> 
+      </tab>
+
+      <tab heading="Complete">
+            <p-table #dt [columns]="cols" [value]="casesListComplete" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="search_input" style="text-align: right">        
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                
+                            </th>
+                            <th>
+                               Action
+                               
+                            </th>
+                        </tr>
+                      
+                    </ng-template>
+                   
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <!-- <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td> -->
+                            <td>
+                                        {{rowData.Title}}    
+                            </td>
+                            <td>                
+                                        {{rowData.CompanyName}}
+                            </td>
+                            <td>               
+                                        {{rowData.UserType}}
+                            </td>
+                           
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                
+                                        <p-dropdown [options]="CaseStatus" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="StatusTitle" filter="true"></p-dropdown>
+                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Status}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                
+                            <td pEditableColumn  class="cursor">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <textarea pInputTextarea  [(ngModel)]="rowData.Comment"></textarea>
+                                   
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.Comment}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td><i  class="fa fa-upload cursor" data-toggle="modal"  (click)="OpenUploadPopup(uploadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-download cursor"  (click)="OpenDownloadPopup(downloadCaseTemplate)"></i>
+                                 &nbsp;&nbsp;&nbsp; <i class="fa fa-location-arrow cursor"  (click)="SaveStatusComment(rowData)"></i>
+                 
+                            </td>
+                     
+                        </tr>
+                    </ng-template>
+                </p-table> 
+      </tab>
     </tabset>
   </div>
 
@@ -113,12 +617,16 @@
        
           <div class="col-sm-12">
               <p-fileUpload name="demo[]" (onUpload)="onUpload($event)"
-              multiple="multiple" accept="image/*" maxFileSize="1000000">
+              multiple="multiple"  maxFileSize="1000000">
           <ng-template pTemplate="content">
+
               <ul *ngIf="uploadedFiles.length">
-                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                  <!-- <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li> -->
               </ul>
           </ng-template>
+
+          
+          
       </p-fileUpload>
                    </div>
         </div>         
