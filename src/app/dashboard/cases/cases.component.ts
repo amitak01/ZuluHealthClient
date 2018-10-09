@@ -33,7 +33,8 @@ export class CasesComponent implements OnInit {
   casesListMissingDoc:cases[];
   casesListComplete:cases[];
   casesListMissingDocCode:cases[];
-
+  CaseStatusFilter:any[];
+  UserTypesFilter:any[];
 
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
@@ -109,17 +110,36 @@ export class CasesComponent implements OnInit {
     { field: 'Comment', header: 'Comment' },
 
 ];
-this.CaseStatus = [
+  this.CaseStatus = [
   {StatusId: 1, StatusTitle: 'InCoding'},
-  {StatusId: 1, StatusTitle: 'Coding Ready'},
-  {StatusId: 1, StatusTitle: 'Received'},
-  {StatusId: 1, StatusTitle: 'Missing Documentation – Op Notes'},
-  {StatusId: 1, StatusTitle: 'Charges Entered'},
-  {StatusId: 1, StatusTitle: 'Missing Documentation'},
-  {StatusId: 1, StatusTitle: 'Claim Billed'},
-  {StatusId: 1, StatusTitle: 'Complete'}
+  {StatusId: 2, StatusTitle: 'Coding Ready'},
+  {StatusId: 3, StatusTitle: 'Received'},
+  {StatusId: 4, StatusTitle: 'Missing Documentation – Op Notes'},
+  {StatusId: 5, StatusTitle: 'Charges Entered'},
+  {StatusId: 6, StatusTitle: 'Missing Documentation'},
+  {StatusId: 7, StatusTitle: 'Claim Billed'},
+  {StatusId: 8, StatusTitle: 'Complete'}
    ];
 
+   this.CaseStatusFilter = [
+    {label:  'InCoding', value: 'InCoding'},
+    {label: 'Coding Ready', value: 'Coding Ready'},
+    {label: 'Received', value: 'Received'},
+    {label: 'Missing Documentation – Op Notes', value: 'Missing Documentation – Op Notes'},
+    {label: 'Charges Entered', value: 'Charges Entered'},
+    {label: 'Missing Documentation', value: 'Missing Documentation'},
+    {label: 'Claim Billed', value: 'Claim Billed'},
+    {label: 'Complete', value: 'Complete'}
+     ];
+     this.UserTypesFilter = [
+      { label: 'Biller', value: 'Biller' },
+      { label: 'Coder', value: 'Coder' },
+      { label: 'Collector', value: 'Collector' },
+      { label: 'Manager', value: 'Manager' },
+      { label: 'Supervisor', value: 'Supervisor' },
+      { label: 'PAS', value: 'PAS' },
+  
+     ];
   }
 
  

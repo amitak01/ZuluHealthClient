@@ -6,6 +6,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-client',
@@ -22,6 +23,7 @@ export class ClientComponent implements OnInit {
   deletemodalRef: BsModalRef;
   IsEditUsers:boolean=false;
   CurrentUsers:Clients;
+  CompanyNames:any[];
   public mask = ['+', '9', '3', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
 
@@ -33,10 +35,7 @@ this.addUserForm=fb.group({
   FirstName:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
   LastName:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
   Email:[null,Validators.compose([Validators.required, Validators.email])],
-  City:[null,Validators.compose([Validators.minLength(4), Validators.maxLength(20)])],
   CompanyName:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-  State:[null,Validators.compose([Validators.minLength(4), Validators.maxLength(20)])],
-  Address1:[null],
   PhoneNo:[null,Validators.required],
 });
 
@@ -49,27 +48,35 @@ this.addUserForm=fb.group({
   ngOnInit() {
     this.clients = [
       { FirstName: 'Rhonda', LastName: 'Riose', Email: 'apple1@yopmail.com', PhoneNumber: '546456406.00',
-      Address : 'Street1,NJ1',City:'C1',CompanyName:'CN1',State:'St1' },
+      CompanyName:'CN1'},
       { FirstName: 'George', LastName: 'Niwu', Email: 'apple2@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',CompanyName:'CN2',State:'St2' },   
+      CompanyName:'CN2' },   
     
       { FirstName: 'Kewin', LastName: 'Kenchusky', Email: 'apple3@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',CompanyName:'CN2',State:'St2' },
+     CompanyName:'CN2' },
       { FirstName: 'Miless', LastName: 'Frowen', Email: 'apple4@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',CompanyName:'CN2',State:'St2' },
+      CompanyName:'CN2' },
       { FirstName: 'Roase', LastName: 'Nister', Email: 'apple5@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',CompanyName:'CN2',State:'St2' },
+       CompanyName:'CN2' },
       { FirstName: 'Jille', LastName: 'Growic', Email: 'apple6@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',CompanyName:'CN2',State:'St2' },
+       CompanyName:'CN3' },
       { FirstName: 'Leno', LastName: 'Junus', Email: 'apple5@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',CompanyName:'CN2',State:'St2' },
+      CompanyName:'CN4' },
     ];
    
+   
+    this.CompanyNames = [
+      { label: 'CN1', value: 'CN1' },
+      { label: 'CN2', value: 'CN2' },
+      { label: 'CN3', value: 'CN3' },
+      { label: 'CN4', value: 'CN4' },
+  
+  ];
+  
    
     this.cols = [
       { field: 'FirstName', header: 'Name' },
       { field: 'PhoneNumber', header: 'Phone No' },
-      { field: 'Address', header: 'Address' },
       { field: 'Email', header: 'Email' },
       { field: 'CompanyName', header: 'Company Name' }
   ];
@@ -79,8 +86,8 @@ this.addUserForm=fb.group({
     debugger;
     if(this.IsEditUsers==false){
      this.clients.push({FirstName:usersData.FirstName,LastName:usersData.LastName,
-      Address:usersData.Address1,City:usersData.City,Email:usersData.Email,PhoneNumber:usersData.PhoneNo,
-      CompanyName:usersData.CompanyName,State:usersData.State
+     Email:usersData.Email,PhoneNumber:usersData.PhoneNo,
+      CompanyName:usersData.CompanyName
       });
       this.toastr.success("Client Added Successfully !")
     }
@@ -93,14 +100,11 @@ this.addUserForm=fb.group({
       this.clients.forEach(function (item, index) {
         if (item.Email === currentUser.Email) {
           item.FirstName=usersData.FirstName;
-          item.LastName=usersData.LastName;
-          item.Address=usersData.Address1;
-          item.City=usersData.City;
+          item.LastName=usersData.LastName;        
           item.Email=usersData.Email;
           item.PhoneNumber=usersData.PhoneNo;
           item.CompanyName=usersData.CompanyName;
-          item.State=usersData.State;
-  
+
         }
   
      });
@@ -137,7 +141,7 @@ this.addUserForm=fb.group({
       this.modalRef = this.modalService.show(template);
        // input data to form
        this.addUserForm.reset({ client: new Clients(), FirstName: usersData.FirstName, LastName: usersData.LastName,CompanyName:usersData.CompanyName,
-        Email:usersData.Email,PhoneNo:usersData.PhoneNumber,City:usersData.City,State:usersData.State,Address1:usersData.Address
+        Email:usersData.Email,PhoneNo:usersData.PhoneNumber
       });
       }
   

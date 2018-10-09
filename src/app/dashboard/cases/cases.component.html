@@ -113,6 +113,18 @@
                      
                   </th>
               </tr>
+              <tr>
+                <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                    <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                    <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All Company" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                    <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Company" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                    <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                   
+                  </th>
+                  <th></th>
+              </tr>
             
           </ng-template>
          
@@ -621,7 +633,7 @@
           <ng-template pTemplate="content">
 
               <ul *ngIf="uploadedFiles.length">
-                  <!-- <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li> -->
+                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
               </ul>
           </ng-template>
 

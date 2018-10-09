@@ -9,9 +9,6 @@ export class Clients{
     LastName:string;
     Email:string;
     CompanyName:string;
-    Address:string;
-    City:string;
-    State:string;
     PhoneNumber:string;
     
 }
@@ -31,9 +28,6 @@ export class Users{
     LastName:string;
     Email:string;
     UserType:string;
-    Address:string;
-    City:string;
-    State:string;
     PhoneNumber:string;
     Clients:string;
     

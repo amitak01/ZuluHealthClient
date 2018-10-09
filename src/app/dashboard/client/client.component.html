@@ -27,6 +27,17 @@
                
             </th>
         </tr>
+        <tr>
+          <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input *ngSwitchCase="'FirstName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'PhoneNumber'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'Email'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+              <p-multiSelect *ngSwitchCase="'CompanyName'" [options]="CompanyNames" defaultLabel="All Company" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+              
+            </th>
+            <th></th>
+      </tr>
       
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -85,18 +96,6 @@
         </div>
       
            <div class="row">
-          <div class="col-sm-4">
-             <div class="form-group">
-           <label for="exampleInputEmail1">City</label>
-           <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City" formControlName="City">
-         </div>
-          </div>
-             <div class="col-sm-4">
-             <div class="form-group">
-           <label for="exampleInputEmail1">State</label>
-           <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter State" formControlName="State">
-         </div>
-          </div>
             <div class="col-sm-4">
              <div class="form-group">
            <label for="exampleInputEmail1">Phone no</label>
@@ -104,15 +103,7 @@
          </div>
           </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-               <div class="form-group">
-             <label for="exampleInputEmail1">Address 1</label>
-        <textarea class="form-control rounded-0" rows="3" formControlName="Address1"></textarea>
-           </div>
-            </div>
-             
-          </div>
+
         <div class="form-group pull-right">
   
    

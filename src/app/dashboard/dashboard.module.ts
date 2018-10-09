@@ -28,6 +28,8 @@ import { CasesComponent } from './cases/cases.component';
 import {FileUploadModule} from 'primeng/fileupload';
 import { TabsModule } from 'ngx-bootstrap';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 
@@ -52,8 +54,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
         CheckboxModule,
         FileUploadModule,
         TabsModule.forRoot(),
-        InputTextareaModule
-
+        InputTextareaModule,
+        MultiSelectModule,
+        AutoCompleteModule
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent, CasesComponent]
 })

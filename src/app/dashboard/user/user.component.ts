@@ -33,6 +33,11 @@ export class UserComponent implements OnInit {
   assignmodalRef: BsModalRef;
   IsEditUsers:boolean=false;
   cols: any[];
+  UserTypes:any[];
+  ClientNames:any[];
+  filteredClientSingle: any[];
+  Clientstype: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
+
 
   public mask = ['+', '9', '3', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
@@ -53,10 +58,7 @@ export class UserComponent implements OnInit {
   FirstName:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
   LastName:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
   Email:[null,Validators.compose([Validators.required, Validators.email])],
-  City:[null,Validators.compose([Validators.minLength(4), Validators.maxLength(20)])],
   UserType:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-  State:[null,Validators.compose([Validators.minLength(4), Validators.maxLength(20)])],
-  Address1:[null],
   PhoneNo:[null,Validators.required],
 });
 
@@ -70,24 +72,21 @@ debugger;
 
     this.users = [
       { FirstName: 'Rhonda', LastName: 'Riose', Email: 'apple1@yopmail.com', PhoneNumber: '546456406.00',
-      Address : 'Street1,NJ1',City:'C1',UserType:'Manager',State:'St1',Clients:'' },
+     UserType:'Manager',Clients:'' },
       { FirstName: 'George', LastName: 'Niwu', Email: 'apple2@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Biller',State:'St2',Clients:'' },   
+     UserType:'Biller',Clients:'' },   
     
       { FirstName: 'Kewin', LastName: 'Kenchusky', Email: 'apple3@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Coder',State:'St2',Clients:'' },
+      UserType:'Coder',Clients:'' },
       { FirstName: 'Miless', LastName: 'Frowen', Email: 'apple4@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Client',State:'St2',Clients:'' },
+      UserType:'Client',Clients:'' },
       { FirstName: 'Roase', LastName: 'Nister', Email: 'apple5@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Collector',State:'St2',Clients:'' },
+      UserType:'Collector',Clients:'' },
       { FirstName: 'Jille', LastName: 'Growic', Email: 'apple6@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Supervisor',State:'St2',Clients:'' },
+      UserType:'Supervisor',Clients:'' },
       { FirstName: 'Leno', LastName: 'Junus', Email: 'apple7@yopmail.com', PhoneNumber: '5456406.00',
-      Address : 'Street2',City:'C2',UserType:'Manager',State:'St2',Clients:'' }
+      UserType:'Manager',Clients:'Acme,Simpsons' }
         ]
-
-  
-
   
   // multiselect
 
@@ -116,10 +115,20 @@ debugger;
     this.cols = [
       { field: 'FirstName', header: 'Name' },
       { field: 'PhoneNumber', header: 'Phone No' },
-      { field: 'Address', header: 'Address' },
       { field: 'UserType', header: 'User Type' },
       { field: 'Clients', header: 'Clients' }
   ];
+   
+  this.UserTypes = [
+    { label: 'Biller', value: 'Biller' },
+    { label: 'Coder', value: 'Coder' },
+    { label: 'Collector', value: 'Collector' },
+    { label: 'Manager', value: 'Manager' },
+    { label: 'Supervisor', value: 'Supervisor' },
+    { label: 'PAS', value: 'PAS' },
+
+   ];
+
    
    }
 
@@ -136,8 +145,8 @@ debugger;
   debugger;
   if(this.IsEditUsers==false){
    this.users.push({FirstName:usersData.FirstName,LastName:usersData.LastName,
-    Address:usersData.Address1,City:usersData.City,Email:usersData.Email,PhoneNumber:usersData.PhoneNo,
-    UserType:usersData.UserType.UserTypeName,Clients:"",State:usersData.State
+    Email:usersData.Email,PhoneNumber:usersData.PhoneNo,
+    UserType:usersData.UserType.UserTypeName,Clients:""
     });
   this.toastr.success("User Added Successfully !");
   }
@@ -151,13 +160,10 @@ debugger;
       if (item.Email === currentUser.Email) {
         item.FirstName=usersData.FirstName;
         item.LastName=usersData.LastName;
-        item.Address=usersData.Address1;
-        item.City=usersData.City;
         item.Email=usersData.Email;
         item.PhoneNumber=usersData.PhoneNo;
         item.UserType=usersData.UserType.UserTypeName;
         item.Clients="";
-        item.State=usersData.State;
 
       }
 
@@ -194,7 +200,7 @@ debugger;
     this.modalRef = this.modalService.show(template);
      // input data to form
      this.addUserForm.reset({ user: new Users(), FirstName: usersData.FirstName, LastName: usersData.LastName,
-      Email:usersData.Email,PhoneNo:usersData.PhoneNumber,City:usersData.City,State:usersData.State,Address1:usersData.Address
+      Email:usersData.Email,PhoneNo:usersData.PhoneNumber
     });
     }
 
@@ -248,6 +254,10 @@ debugger;
   }
 
   
+  filterCountrySingle(event) {
+    let query = event.query;
+   
+}
 
 
 

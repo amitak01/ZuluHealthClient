@@ -20,7 +20,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {ChartModule} from 'primeng/chart';
 import {DataExchangeService} from './services/data-exchange.service';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
-import {MultiSelectModule} from 'primeng/multiselect';
 
 
 
@@ -40,8 +39,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
     ChartModule,
-    AngularMultiSelectModule,
-    MultiSelectModule,
+    AngularMultiSelectModule
+  
 
   ],
   providers: [HttpClient, AppSettingsService,AuthenticationService, AuthGuard,DataExchangeService],
