@@ -2,7 +2,7 @@
   float: left;
   height: 100%;
   width: 250px;
-  background: #253b61;
+  background: #4d5f7e;
   color: #333;
   -webkit-transform: translateX(0);
   transform: translateX(0);
@@ -114,7 +114,7 @@
   .side-nav .categories> li:hover> a ,  .side-nav .categories> li:hover> i ,.side-nav .categories > li:hover > a:after, 
   .side-nav .categories> .active> a ,  .side-nav .categories> .active > i ,.side-nav .categories > .active > a:after
   { color:#253b61;}
-  .categories .active , .categories li:hover{ background: #eaeaf3;
+  .categories .active , .categories li:hover{ background: #d7d7d8;
     }
   /* .side-nav .categories > li > a:after {
     content: "\f053";
