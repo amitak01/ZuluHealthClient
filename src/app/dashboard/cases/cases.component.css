@@ -1,3 +1,3 @@
-:host /deep/ .nav-link.active{background: #253b61; color:#fff !important;}
+:host /deep/ .nav-link.active{background: #253b61; color:#fff !important;border-radius:4px;}
 :host /deep/  .nav-tabs .nav-link{color:#253b61;}
 :host /deep/  .nav-tabs { border-bottom: none; padding-bottom: 10px;}
