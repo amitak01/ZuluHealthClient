@@ -6,6 +6,7 @@ import {Component,
   EventEmitter, TemplateRef} from '@angular/core';
 import {DataExchangeService} from '../../services/data-exchange.service';
 import {Router} from '@angular/router';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,18 @@ export class HeaderComponent implements OnInit {
   // toggleCount:boolean=;
   ShowToggles:boolean=false;
   toggleCount:any;
+  //global filter
+  brands: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
+
+    filteredBrands: any[];
+    items: MenuItem[];
+
+
+    brand: string;
+
+    //global filter end
+
+
   constructor(private DEService:DataExchangeService,private router:Router) { }
 
   
@@ -29,6 +42,36 @@ export class HeaderComponent implements OnInit {
       this.toggleCount = message==false?true:false;
       if(message)document.getElementById('side_body').classList.add('side_full_body');
     })
+
+    //menu baar
+    this.items = [
+      {label: 'Account',
+      command: (event: Event) =>this.navigateToPath()
+    },
+      {
+          
+          label: 'File',
+          items: [{
+                  label: 'New', 
+                  icon: 'pi pi-fw pi-plus',
+                  items: [
+                      {label: 'Project'},
+                      {label: 'Other'},
+                  ]
+              },
+              {label: 'Open'},
+              {label: 'Quit'}
+          ]
+      },
+      {
+          label: 'Edit',
+          icon: 'pi pi-fw pi-pencil',
+          items: [
+              {label: 'Delete', icon: 'pi pi-fw pi-trash'},
+              {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+          ]
+      }
+  ];
   }
 
   ToggleSideBar() {
@@ -62,5 +105,18 @@ export class HeaderComponent implements OnInit {
  
      this.router.navigate(['/dashboard']);
  }
+ filterBrands(event) {
+  this.filteredBrands = [];
+  for(let i = 0; i < this.brands.length; i++) {
+      let brand = this.brands[i];
+      if(brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+          this.filteredBrands.push(brand);
+      }
+  }
+}
+navigateToPath(){
+  debugger;
+  this.router.navigate(['/dashboard/client']);
+}
 
 }

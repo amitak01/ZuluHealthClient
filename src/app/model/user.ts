@@ -24,6 +24,7 @@ export interface MyClients {
 }
 
 export class Users{
+    UsersId:string;
     FirstName:string;
     LastName:string;
     Email:string;

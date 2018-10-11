@@ -1,6 +1,8 @@
  
-
-  
+:host/deep/ .ui-menubar{border:none;}
+:host/deep/  .ui-button { background-color: #253b61; border: 1px solid #253b61;}
+:host/deep/  .ui-autocomplete-dropdown{height: 35px;}
+:host/deep/  .ui-menubar-custom div input{  border-bottom: 1px solid #253b61; padding-bottom: 6px;}
   .show-side-nav {
     -webkit-transform: translateX(-290px);
     -moz-transform: translateX(-290px);
@@ -32,9 +34,8 @@
   .navbar-default .navbar-brand {color:#333!important}
   .navbar-default .navbar-nav>li>a:focus,
   .navbar-default .navbar-nav>li>a:hover {color: #333 !important}
-  .info{float: left; width: 215px; text-align: center;margin-right:60px;}
-  .info img{ HEIGHT: 40PX;
-    PADDING: 0 35PX 0 15PX;}
+  .info{float: left; width: 215px; margin-right:60px;}
+  .info img{ HEIGHT: 40PX;}
   .navbar-default .navbar-nav>.open>a,
   .navbar-default .navbar-nav>.open>a:focus,
   .navbar-default .navbar-nav>.open>a:hover {background-color: transparent !important; color: #FFF !important}

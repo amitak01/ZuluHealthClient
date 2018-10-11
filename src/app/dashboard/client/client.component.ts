@@ -7,6 +7,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import * as _ from 'underscore';
+import { MenuItem } from 'primeng/api';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-client',
@@ -18,16 +21,34 @@ export class ClientComponent implements OnInit {
   clients: Clients[];
   addUserForm: FormGroup;
   AssignClientForm:FormGroup;
+  assignUserForm:FormGroup;
   cols: any[];
   modalRef: BsModalRef;
   deletemodalRef: BsModalRef;
   IsEditUsers:boolean=false;
   CurrentUsers:Clients;
   CompanyNames:any[];
+  ManagerList:any[];
+  SupervisorList:any[];
+  CollectorList:any[];
+  BillerList:any[];
+  PASList:any[];
+  CoderList:any[];
+  Manager:string;
+  Supervisor:string;
+  Collector:string;
+  Biller:string;
+  PAS:string;
+  Coder:string;
+  assignmodalRef: BsModalRef;
+  tabs:MenuItem[];
+
   public mask = ['+', '9', '3', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
 
-  constructor(private DEService: DataExchangeService,private toastr: ToastrService, private fb:FormBuilder,private modalService: BsModalService,) { 
+  constructor(private DEService: DataExchangeService,private toastr: ToastrService, private fb:FormBuilder,private modalService: BsModalService,
+  private route:Router
+  ) { 
     debugger;
     this.DEService.changeDashBoardMessage(false);
 
@@ -38,6 +59,15 @@ this.addUserForm=fb.group({
   CompanyName:[null,Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
   PhoneNo:[null,Validators.required],
 });
+//assign users
+this.assignUserForm=fb.group({
+  Manager:[null,Validators.required],
+  Supervisor:[null,Validators.required],
+  Collector:[null,Validators.required],
+  Biller:[null,Validators.required],
+  PAS:[null,Validators.required],
+  Coder:[null,Validators.required]
+});
 
  this.AssignClientForm=fb.group({
   selectedItems:[null,Validators.required]
@@ -46,6 +76,7 @@ this.addUserForm=fb.group({
    }
    
   ngOnInit() {
+
     this.clients = [
       { FirstName: 'Rhonda', LastName: 'Riose', Email: 'apple1@yopmail.com', PhoneNumber: '546456406.00',
       CompanyName:'CN1'},
@@ -80,6 +111,42 @@ this.addUserForm=fb.group({
       { field: 'Email', header: 'Email' },
       { field: 'CompanyName', header: 'Company Name' }
   ];
+
+  this.ManagerList = [
+    {label: 'Rhonda', value: 'Audi'},
+    {label: 'Carl S. Boyd', value: 'Carl S. Boyd'},
+    {label: 'Jonathan S. Woodard', value: 'Jonathan S. Woodard'},
+
+   ];
+  this.SupervisorList = [
+  {label: 'Paul M. Butts', value: 'Paul M. Butts'},
+  {label: 'Angela A. Rogers', value: 'Angela A. Rogers'},
+  {label: 'Danielle L. Mattice', value: 'Danielle L. Mattice'},
+  
+  ];
+  this.CollectorList = [
+  {label: 'Judith G. Miller', value: 'Judith G. Miller'},
+  {label: 'Jay N. Hulett', value: 'Jay N. Hulett'},
+  {label: 'Ruth B. King', value: 'Ruth B. King'},
+  
+ ];
+ this.BillerList = [
+  {label: 'John M. Jones', value: 'John M. Jones'},
+  {label: 'Alan A. Thedford', value: 'Alan A. Thedford'},
+  {label: 'Bobby K. Cobbins', value: 'Bobby K. Cobbins'},
+
+ ];
+ this.PASList = [
+  {label: 'Sara C. Oconnell', value: 'Sara C. Oconnell'},
+  {label: 'Roxanne H. Palmer', value: 'Roxanne H. Palmer'},
+  {label: 'Georgann J. Williams', value: 'Georgann J. Williams'},
+ ];
+ this.CoderList = [
+  {label: 'Audi', value: 'Audi'},
+  {label: 'Reina C. Moos', value: 'Reina C. Moos'},
+  {label: 'Stephen L. Barreto', value: 'Stephen L. Barreto'},
+  {label: 'Joseph J. Premo', value: 'Joseph J. Premo'}
+ ];
   }
 
   onFormSubmit(usersData){
@@ -158,5 +225,11 @@ this.addUserForm=fb.group({
       this.deletemodalRef = this.modalService.show(Deletetemplate);
     }
    
-
+    OpenAssignUsersPopup(assigntemplate: TemplateRef<any>) {
+      this.assignmodalRef = this.modalService.show(assigntemplate);
+    }
+    saveAssignedUsers(usersData){
+      this.toastr.success("Users Assigned Successfully !");
+    }
+   
 }

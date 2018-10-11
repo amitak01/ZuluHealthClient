@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div  class="row"><div class="col-sm-12"><h4  class="main_heading inline_block">Clients</h4>
       <div class="add_patient"><button data-toggle="modal"  class="btn btn-primary center-block" (click)="openModal(template)"><i class="fa fa-plus"></i>Add</button></div>
-
-    
+     <app-page-menubar>
+</app-page-menubar>    
     </div></div>
   <div class="row ">
     <div class="col-sm-12">
@@ -46,6 +46,7 @@
                 {{rowData[col.field]}}
             </td>
             <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i>
+              &nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignUsersPopup(assigntemplate,rowData)"></i>
  
             </td>
         </tr>
@@ -108,11 +109,7 @@
   
    
          <button type="" class="btn btn-primary common_btn"> Save</button>
-         <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="modalRef.hide()"  role="button">Cancel</button>
-  
-       
-         <!-- <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button> -->
-     
+         <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="modalRef.hide()"  role="button">Cancel</button>      
      
    </div>
   </form>
@@ -239,6 +236,78 @@
     </ng-template>
    
   </div>
+
+
+  
+<!--add/Edit team for client -->
+<ng-template #assigntemplate class="modal-lg">
+  
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" *ngIf="!IsEditUsers">Assign Users</h4>
+    <!-- <h4 class="modal-title pull-left"  *ngIf="IsEditUsers">Edit Users</h4> -->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="assignmodalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="assignUserForm" role="form" [formGroup]="assignUserForm" (ngSubmit)="saveAssignedUsers(assignUserForm.value) && assignUserForm.valid">
+      <div class="row">
+        <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Manager</label>
+         <p-dropdown [options]="ManagerList" [(ngModel)]="Manger" [style]="{'width':'150px'}" editable="true" placeholder="Select a Brand"></p-dropdown>
+        </div>
+        </div>
+           <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Supervisor</label>
+         <p-dropdown [options]="SupervisorList" [(ngModel)]="Supervisor" [style]="{'width':'150px'}" editable="true" placeholder="Select a Brand"></p-dropdown>
+        </div>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Collector</label>
+         <p-dropdown [options]="CollectorList" [(ngModel)]="Collector" [style]="{'width':'150px'}" editable="true" placeholder="Select a Brand"></p-dropdown>
+        </div>
+        </div>
+           <div class="col-sm-6">
+           <div class="form-group">
+              <label for="exampleInputEmail1">Biller</label>
+              <p-dropdown [options]="BillerList" [(ngModel)]="Biller" [style]="{'width':'150px'}" editable="true" placeholder="Select a Brand"></p-dropdown>
+  
+       </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+           <div class="form-group">
+         <label for="exampleInputEmail1">Payment Poster</label>
+         <p-dropdown [options]="PASList" [(ngModel)]="PAS" [style]="{'width':'150px'}" editable="true" placeholder="Select a Brand"></p-dropdown>
+        </div>
+        </div>
+           <div class="col-sm-6">
+           <div class="form-group">
+              <label for="exampleInputEmail1">Coder</label>
+              <p-dropdown [options]="CoderList" [(ngModel)]="Coder" [style]="{'width':'150px'}" editable="true" placeholder="Select a Brand"></p-dropdown>
+  
+       </div>
+        </div>
+      </div>
+ 
+    
+       
+      <div class="form-group pull-right">
+
+ 
+       <button type="" class="btn btn-primary common_btn" (click)="assignmodalRef.hide()"> Save</button>
+       <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="assignmodalRef.hide()"  role="button">Cancel</button>      
+   
+ </div>
+</form>
+  </div>
+</ng-template>
   </div>
 
   </div>

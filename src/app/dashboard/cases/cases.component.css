@@ -1,5 +1,6 @@
+
 .ng-tabs/deep/ .nav-tabs{margin-bottom:10px; border-bottom:none;}
-.ng-tabs/deep/ .nav-tabs .nav-link{border:1px solid #ccc;background:#f7f7f7;color:#253b61;border-radius:0;border-right:0;font-size:12px;transition:.5s}
+.ng-tabs/deep/ .nav-tabs .nav-link{border:1px solid #ccc;background:#f7f7f7;color:#4d5f7e;border-radius:0;border-right:0;font-size:12px;transition:.5s}
 .ng-tabs/deep/ .nav-tabs .nav-item:last-child .nav-link{border-right:1px solid #ccc}
-.ng-tabs/deep/ .nav-tabs .nav-link.active, .ng-tabs/deep/ .nav-tabs .nav-link:hover{background:#253b61;color:#fff}
-.ng-tabs/deep/ .nav-tabs .nav-link{color:#253b61}
+.ng-tabs/deep/ .nav-tabs .nav-link.active, .ng-tabs/deep/ .nav-tabs .nav-link:hover{background:#4d5f7e;color:#fff}
+.ng-tabs/deep/ .nav-tabs .nav-link{color:#4d5f7e;}

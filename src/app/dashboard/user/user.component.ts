@@ -6,6 +6,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { MenuItem } from 'primeng/api';
+import {Router} from '@angular/router';
 
 
 
@@ -36,13 +38,14 @@ export class UserComponent implements OnInit {
   UserTypes:any[];
   ClientNames:any[];
   filteredClientSingle: any[];
+  tabs:MenuItem[];
   Clientstype: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
-
+ 
 
   public mask = ['+', '9', '3', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(private DEService:DataExchangeService, private fb:FormBuilder,
-    private modalService: BsModalService,private toastr: ToastrService,) { 
+    private modalService: BsModalService,private toastr: ToastrService,private route:Router) { 
       this.DEService.changeDashBoardMessage(false);
       this.userTypes = [
         {UserTypeId: 1, UserTypeName: 'manager'},
@@ -69,25 +72,40 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
 debugger;
-
+   //tabs
+   
+   this.tabs = [
+    {label: 'User', icon: 'fa fa-fw fa-users',command: (event: Event) =>this.navigateToPath("user")},
+    {label: 'Permission', icon: 'fa fa-fw fa-calendar',command: (event: Event) =>this.navigateToPath("userpermission") },
+    {label: 'Role', icon: 'fa fa-fw fa-book',command: (event: Event) =>this.navigateToPath("changePassword")},
+    {label: 'Password', icon: 'fa fa-fw fa-support',command: (event: Event) =>this.navigateToPath("changePassword")},
+    // {label: 'Social', icon: 'fa fa-fw fa-twitter'}
+    ];
+  
+     
     this.users = [
-      { FirstName: 'Rhonda', LastName: 'Riose', Email: 'apple1@yopmail.com', PhoneNumber: '546456406.00',
+      { UsersId:"1",FirstName: 'Rhonda Riose', LastName: 'Riose', Email: 'apple1@yopmail.com', PhoneNumber: '546456406.00',
      UserType:'Manager',Clients:'' },
-      { FirstName: 'George', LastName: 'Niwu', Email: 'apple2@yopmail.com', PhoneNumber: '5456406.00',
+      { UsersId:"2",FirstName: 'George', LastName: 'Niwu', Email: 'apple2@yopmail.com', PhoneNumber: '5456406.00',
      UserType:'Biller',Clients:'' },   
     
-      { FirstName: 'Kewin', LastName: 'Kenchusky', Email: 'apple3@yopmail.com', PhoneNumber: '5456406.00',
+      { UsersId:"3",FirstName: 'Kewin', LastName: 'Kenchusky', Email: 'apple3@yopmail.com', PhoneNumber: '5456406.00',
       UserType:'Coder',Clients:'' },
-      { FirstName: 'Miless', LastName: 'Frowen', Email: 'apple4@yopmail.com', PhoneNumber: '5456406.00',
+      { UsersId:"4",FirstName: 'Miless', LastName: 'Frowen', Email: 'apple4@yopmail.com', PhoneNumber: '5456406.00',
       UserType:'Client',Clients:'' },
-      { FirstName: 'Roase', LastName: 'Nister', Email: 'apple5@yopmail.com', PhoneNumber: '5456406.00',
+      { UsersId:"5",FirstName: 'Roase', LastName: 'Nister', Email: 'apple5@yopmail.com', PhoneNumber: '5456406.00',
       UserType:'Collector',Clients:'' },
-      { FirstName: 'Jille', LastName: 'Growic', Email: 'apple6@yopmail.com', PhoneNumber: '5456406.00',
+      { UsersId:"6",FirstName: 'Jille', LastName: 'Growic', Email: 'apple6@yopmail.com', PhoneNumber: '5456406.00',
       UserType:'Supervisor',Clients:'' },
-      { FirstName: 'Leno', LastName: 'Junus', Email: 'apple7@yopmail.com', PhoneNumber: '5456406.00',
+      { UsersId:"7",FirstName: 'Leno', LastName: 'Junus', Email: 'apple7@yopmail.com', PhoneNumber: '5456406.00',
       UserType:'Manager',Clients:'Acme,Simpsons' }
         ]
-  
+
+        localStorage.setItem("AdminSelectedUser",this.users[0].UsersId);
+        localStorage.setItem("AdminSelectedUserRole",this.users[0].UserType) 
+        this.addUserForm.reset({ user: new Users(), FirstName: this.users[0].FirstName, LastName: this.users[0].LastName,
+          Email:this.users[0].Email,PhoneNo:this.users[0].PhoneNumber
+        });
   // multiselect
 
    this.dropdownList = [
@@ -113,10 +131,8 @@ debugger;
       allowSearchFilter: true
     };
     this.cols = [
-      { field: 'FirstName', header: 'Name' },
-      { field: 'PhoneNumber', header: 'Phone No' },
-      { field: 'UserType', header: 'User Type' },
-      { field: 'Clients', header: 'Clients' }
+      { field: 'FirstName', header: 'Users' },
+    
   ];
    
   this.UserTypes = [
@@ -144,7 +160,7 @@ debugger;
   onFormSubmit(usersData){
   debugger;
   if(this.IsEditUsers==false){
-   this.users.push({FirstName:usersData.FirstName,LastName:usersData.LastName,
+   this.users.push({UsersId:usersData.UsersId,FirstName:usersData.FirstName,LastName:usersData.LastName,
     Email:usersData.Email,PhoneNumber:usersData.PhoneNo,
     UserType:usersData.UserType.UserTypeName,Clients:""
     });
@@ -259,7 +275,28 @@ debugger;
    
 }
 
+navigateToPath(data){
+  debugger;
+  this.route.navigate(['/dashboard/'+data])
+}
+onRowSelect(event) {
+  debugger; 
+  this.IsEditUsers=true; 
+  localStorage.setItem("AdminSelectedUser",event.Id);
+  localStorage.setItem("AdminSelectedUserRole",event.UserType);
+  
+  this.addUserForm.reset({ user: new Users(), FirstName: event.data.FirstName, LastName: event.data.LastName,
+    Email:event.data.Email,PhoneNo:event.data.PhoneNumber
+  });
 
+  this.DEService.changeUserAction(event.Id);
+  // this.route.navigate(['dashboard/'+localStorage.getItem("SelectedTab")])
+  //this.messageService.add({severity:'info', summary:'Car Selected', detail:'Vin: ' + event.data.vin});
+}
+
+getSelectedTab(tab){
+  localStorage.setItem("SelectedTab",tab);
+}
 
   
 }

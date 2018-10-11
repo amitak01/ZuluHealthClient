@@ -1,44 +1,44 @@
 <div class="container-fluid">
-    <div  class="row"><div class="col-sm-12"><h4  class="main_heading inline_block">Users</h4>
+    <div  class="row"><div class="col-sm-12">
+     <h4  class="main_heading inline_block">User</h4> 
+   
 
-      <div class="add_patient"><button class="btn btn-primary center-block" (click)="openModal(template)"><i class="fa fa-plus"></i>Add</button></div>
-
+      <app-page-menubar>
+        </app-page-menubar>   
     
     </div></div>
 <div class="row ">
-    <div class="col-sm-12">
+ <div class="col-sm-2">
+    <app-account-sidebar></app-account-sidebar>
+ </div>
+
+    <div class="col-sm-3">
       <div class="shadow_body">
 
-            <p-table #dt [columns]="cols" [value]="users" [paginator]="true" [rows]="10">
-                <ng-template pTemplate="caption">
-                    <div class="search_input" style="text-align: right">        
-                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                        <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-                    </div>
-                </ng-template>
+            <p-table #dt [columns]="cols" [value]="users" [paginator]="true" [rows]="10" selectionMode="single"  (onRowSelect)="onRowSelect($event)" >
+              
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                             {{col.header}}
                             <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-      
                         </th>
-                        <th >
-                           Action
-                           
-                        </th>
+                        
                     </tr>
                     <tr>
 
                     </tr>
-                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                      <input *ngSwitchCase="'FirstName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                      <input *ngSwitchCase="'PhoneNumber'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                      <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypes" defaultLabel="All user types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
-                      <input *ngSwitchCase="'Clients'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                   
-                       </th>
-                    <th></th>
+                    <tr>
+                      <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'FirstName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        <!-- <input *ngSwitchCase="'PhoneNumber'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)"> -->
+                        <!-- <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypes" defaultLabel="All user types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                        <input *ngSwitchCase="'Clients'" pInputText type="text" (input)="dt.filter($event.target.value, col.field,'col.filterMatchMode')">
+                     
+                         </th> -->
+                     
+                    </tr>
+                 
                   
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -46,9 +46,10 @@
                         <td *ngFor="let col of columns">
                             {{rowData[col.field]}}
                         </td>
-                        <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i>&nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,rowData)"></i>
-             
-                        </td>
+                        <!-- <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i> -->
+                          <!-- &nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,rowData)"></i>
+              -->
+                        <!-- </td> -->
                     </tr>
                 </ng-template>
             </p-table>
@@ -222,4 +223,97 @@
   </ng-template>
   
 </div>
-</div></div></div>
+</div>
+
+
+
+
+</div>
+<div class="col-sm-7">
+    <div class="add_patient"><button class="btn btn-primary center-block" (click)="openModal(template)"><i class="fa fa-plus"></i>Add new user</button></div>
+    <!-- <p-tabMenu [model]="tabs" ></p-tabMenu> -->
+
+    <tabset #staticTabs class="ng-tabs">
+
+      <tab heading="User" (click)="getSelectedTab('user')">
+
+          <div class="shadow_body">
+              <div class="row">
+                <div class="col-sm-12">
+                       <div class="col-sm-12">
+                          <form class="addUserForm" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
+                              <div class="row">
+                                <div class="col-sm-6">
+                                   <div class="form-group">
+                                 <label for="exampleInputEmail1">First Name</label>
+                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" formControlName="FirstName">
+                               </div>
+                                </div>
+                                   <div class="col-sm-6">
+                                   <div class="form-group">
+                                 <label for="exampleInputEmail1">Last Name</label>
+                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" formControlName="LastName">
+                               </div>
+                                </div>
+                              </div>
+                               <div class="row">
+                                <div class="col-sm-6">
+                                   <div class="form-group">
+                                 <label for="exampleInputEmail1">Email</label>
+                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="Email">
+                               </div>
+                                </div>
+                                   <div class="col-sm-6">
+                                   <div class="form-group">
+                                <label for="exampleInputEmail1">User Type</label>
+                                 <p-dropdown [options]="userTypes" formControlName="UserType" class="full-width-drop" optionLabel="UserTypeName"></p-dropdown>
+                           
+                               </div>
+                                </div>
+                              </div>
+                            
+                                 <div class="row">
+                               
+                              
+                                  <div class="col-sm-6">
+                                   <div class="form-group">
+                                 <label for="exampleInputEmail1">Phone no</label>
+                                 <input type="text"  [textMask]="{mask: mask}" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone number" formControlName="PhoneNo">
+                               </div>
+                                </div>
+                              </div>
+                        
+                              <div class="form-group pull-right">
+                        
+                         
+                               <button type="" class="btn btn-primary common_btn"> Save</button>
+                               <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="modalRef.hide()"  role="button">Cancel</button>
+                        
+                             
+                             
+                           
+                         </div>
+                        </form>
+                       </div>
+                </div>
+              
+              </div>
+              </div>
+        </tab>
+        <tab heading="Permission" (click)="getSelectedTab('userpermission')">
+         <app-userpermissions></app-userpermissions>
+          </tab>
+          <tab heading="Password" (click)="getSelectedTab('password')">
+           <app-password></app-password>
+
+            </tab>
+            <tab heading="Cases" (click)="getSelectedTab('case')">
+                <app-userscases></app-userscases>
+                
+                 </tab>
+        </tabset>
+    <!--  -->
+
+</div>
+
+</div>

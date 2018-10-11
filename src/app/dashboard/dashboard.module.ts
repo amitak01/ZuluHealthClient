@@ -30,7 +30,16 @@ import { TabsModule } from 'ngx-bootstrap';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {MenubarModule} from 'primeng/menubar';
+import {MenuModule} from 'primeng/menu';
+import {TabMenuModule} from 'primeng/tabmenu';
+import { PageMenubarComponent } from '../shared/page-menubar/page-menubar.component';
+import {MegaMenuModule} from 'primeng/megamenu';
 
+import { AccountSidebarComponent } from '../shared/account-sidebar/account-sidebar.component';
+import { PasswordComponent } from './password/password.component';
+import { UserscasesComponent } from './userscases/userscases.component';
+import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
 
 
 @NgModule({
@@ -56,8 +65,14 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
         TabsModule.forRoot(),
         InputTextareaModule,
         MultiSelectModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        MenubarModule,
+        MenuModule,
+        TabMenuModule,
+        MegaMenuModule
   ],
-  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent, ClientComponent, UserComponent, PermissionsComponent, CasesComponent]
+  declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent,
+     ClientComponent, UserComponent, PermissionsComponent, CasesComponent,PageMenubarComponent,
+     AccountSidebarComponent,PasswordComponent,UserscasesComponent, UserpermissionsComponent]
 })
 export class DashboardModule { }

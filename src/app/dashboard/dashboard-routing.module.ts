@@ -5,7 +5,8 @@ import {ClientComponent} from './client/client.component';
 import {UserComponent} from './user/user.component';
 import {PermissionsComponent} from './permissions/permissions.component';
 import {CasesComponent} from './cases/cases.component';
-
+import {PasswordComponent} from './password/password.component';
+import {UserpermissionsComponent} from './userpermissions/userpermissions.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: 'user', component: UserComponent },
       { path: 'permission', component: PermissionsComponent},
       { path: 'case', component: CasesComponent},
-
+      { path: 'changePassword', component: PasswordComponent},
+      { path: 'userpermission', component: UserpermissionsComponent}
      
   
 

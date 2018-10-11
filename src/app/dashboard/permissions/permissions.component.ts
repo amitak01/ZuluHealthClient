@@ -4,6 +4,7 @@ import {DataExchangeService} from '../../services/data-exchange.service';
 import {UserType,MyClients,Users} from '../../model/user';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {Permission,UsersPerssion,UserSelectedPerssion} from '../../model/permission';
+import { LocalStorage } from '@ng-idle/core';
 
 @Component({
   selector: 'app-permissions',
@@ -19,6 +20,7 @@ export class PermissionsComponent implements OnInit {
   UserPermission:UsersPerssion[];
   UsersSelectedPermission: UserSelectedPerssion[];
   
+  SelectedUser:string;
 
   constructor(private DEService:DataExchangeService, private fb:FormBuilder) { 
       this.DEService.changeDashBoardMessage(false);
@@ -69,7 +71,7 @@ export class PermissionsComponent implements OnInit {
   }
   ngOnInit() {
 
-    
+ this.SelectedUser=localStorage.getItem("AdminSelectedUser"); 
  this.UsersSelectedPermission = [
   {UserId:1,PermissionId: 1,Title:'Create New Users',UserType:"Manager"},
   {UserId:1,PermissionId: 2,Title:'Edit Existing Users',UserType:"Manager"},

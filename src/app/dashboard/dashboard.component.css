@@ -1,4 +1,4 @@
-.side_body{margin-left: 250px;}
+
 
 .card-counter{
     box-shadow: 2px 2px 10px #DADADA;
@@ -58,5 +58,5 @@
     display: block;
     font-size: 18px;
   }
-  .content_body{margin-left: 290px;}
+  /* .content_body{margin-left: 290px;} */
   .content_body.side_full_body{margin-left:0px;}

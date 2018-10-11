@@ -39,7 +39,19 @@
                
             </th>
         </tr>
-      
+        <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+               
+              </th>
+              <th></th>
+          </tr>
+        
     </ng-template>
    
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -118,8 +130,8 @@
                     <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                     <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                     <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
-                    <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All Company" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
-                    <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Company" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                    <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                    <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
                     <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                    
                   </th>
@@ -178,8 +190,8 @@
       </p-table> 
       
             </tab>
-      <tab heading="In Coding">
-        <p-table #dt [columns]="cols" [value]="casesListInCoding" [paginator]="true" [rows]="10">
+      <tab heading="Coding-Clar">
+        <p-table #dt [columns]="cols" [value]="casesListCodingClar" [paginator]="true" [rows]="10">
             <ng-template pTemplate="caption">
                 <div class="search_input" style="text-align: right">        
                     <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -198,7 +210,19 @@
                        
                     </th>
                 </tr>
-              
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                        <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                        <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                        <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                       
+                      </th>
+                      <th></th>
+                  </tr>
+                
             </ng-template>
            
             <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -271,7 +295,19 @@
                    
                 </th>
             </tr>
-          
+            <tr>
+                <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                    <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                    <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                    <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                    <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                    <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                   
+                  </th>
+                  <th></th>
+              </tr>
+            
         </ng-template>
        
         <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -342,7 +378,19 @@
                                
                             </th>
                         </tr>
-                      
+                        <tr>
+                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                                <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                                <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                               
+                              </th>
+                              <th></th>
+                          </tr>
+                        
                     </ng-template>
                    
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -414,7 +462,19 @@
                                
                             </th>
                         </tr>
-                      
+                        <tr>
+                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                                <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                                <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                               
+                              </th>
+                              <th></th>
+                          </tr>
+                        
                     </ng-template>
                    
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -486,7 +546,19 @@
                                
                             </th>
                         </tr>
-                      
+                        <tr>
+                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                                <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                                <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User type" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                               
+                              </th>
+                              <th></th>
+                          </tr>
+                        
                     </ng-template>
                    
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -559,7 +631,19 @@
                                
                             </th>
                         </tr>
-                      
+                        <tr>
+                            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                                <input *ngSwitchCase="'Title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'CompanyName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <!-- <p-dropdown *ngSwitchCase="'CompanyName'" [options]="CompanyNames" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
+                                <p-multiSelect *ngSwitchCase="'UserType'" [options]="UserTypesFilter" defaultLabel="All User Types" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <p-multiSelect *ngSwitchCase="'Status'" [options]="CaseStatusFilter" defaultLabel="All Status" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                <input *ngSwitchCase="'Comment'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                               
+                              </th>
+                              <th></th>
+                          </tr>
+                        
                     </ng-template>
                    
                     <ng-template pTemplate="body" let-rowData let-columns="columns">

@@ -14,6 +14,11 @@ export class DataExchangeService {
   //for dashboard
   private dashBoardMessageSource = new BehaviorSubject(true);
   dashBoardMsg = this.dashBoardMessageSource.asObservable();
+
+  //On User Change
+  private UserChangeSource = new BehaviorSubject("");
+  UserChangeId = this.UserChangeSource.asObservable();
+
   constructor() { }
 
 
@@ -25,5 +30,8 @@ export class DataExchangeService {
   this.dashBoardMessageSource.next(message);
    }
 
+   changeUserAction(message: string) {
+    this.UserChangeSource.next(message);
+     }
   
 }

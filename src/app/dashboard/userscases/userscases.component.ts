@@ -1,53 +1,35 @@
-import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
-import {cases,CaseStatus} from '../../model/cases';
-import {DataExchangeService} from '../../services/data-exchange.service';
+import { Component, OnInit ,TemplateRef} from '@angular/core';
+import {cases} from '../../model/cases';
+import * as _ from 'underscore';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { TabsetComponent } from 'ngx-bootstrap';
-import { fromEventPattern } from 'rxjs';
-import {SelectItem} from 'primeng/api';
-import * as _ from 'underscore';
+import {DataExchangeService} from '../../services/data-exchange.service';
 
-let myAdd = function(x, y) { return x + y; };
 @Component({
-  selector: 'app-cases',
-  templateUrl: './cases.component.html',
-  styleUrls: ['./cases.component.css']
+  selector: 'app-userscases',
+  templateUrl: './userscases.component.html',
+  styleUrls: ['./userscases.component.css']
 })
-export class CasesComponent implements OnInit {
-
+export class UserscasesComponent implements OnInit {
   casesList:cases[];
+  CaseAsPerRole:cases[];
   cols: any[];
   uploadedFiles: any[] = [];
   uploadmodalRef:BsModalRef;
-  downloadmodalref:BsModalRef
-  files:any;
-  CaseStatus:CaseStatus[];
-  casesListCodingClar:cases[];
-  casesListBilling:cases[];
-  casesListCodingReady:cases[];
-  casesListRecieved:cases[];
-  casesListChargeEntry:cases[];
-  casesListClaimBilled:cases[];
-  casesListMissingDoc:cases[];
-  casesListComplete:cases[];
-  casesListMissingDocCode:cases[];
+  downloadmodalref:BsModalRef;
   CaseStatusFilter:any[];
   UserTypesFilter:any[];
-
-  @ViewChild('staticTabs') staticTabs: TabsetComponent;
-
-  constructor(private DEService: DataExchangeService, private toaster:ToastrService,private modalService: BsModalService) {
+  SelectedId:string;
+  files:any;
+  constructor( private toaster:ToastrService,private modalService: BsModalService,private DEService:DataExchangeService) { 
     this.DEService.changeDashBoardMessage(false);
-    
-
-
-   }
-
-  
+    this.DEService.UserChangeId.subscribe(message => this.SelectedId = message)
+  }
+  AdminSelectedUserRole
   ngOnInit() {
-   this.casesList=
+    
+    this.casesList=
    [{caseId:1,Title:"Case1",CompanyName:"Test",MRN:"18139",UserType:"Coder",Status:"Recieved",Comment:"Comment abc"},
    {caseId:2,Title:"Case2",CompanyName:"Test",MRN:"18139",UserType:"Biller",Status:"Coding Ready",Comment:""},
    {caseId:3,Title:"Case1",CompanyName:"Test",MRN:"18567",UserType:"Coder",Status:"Coding Clarification",Comment:""},
@@ -90,59 +72,38 @@ export class CasesComponent implements OnInit {
    {caseId:32,Title:"test",CompanyName:"Test",MRN:"1810",UserType:"",Status:"Complete",Comment:"done"},
    {caseId:33,Title:"test",CompanyName:"Test",MRN:"1810",UserType:"",Status:"Complete",Comment:"done"},
   ];
-  this.casesListCodingClar=_.where(this.casesList, {Status: "Coding Clarification"});
-  this.casesListBilling=_.where(this.casesList, {Status: "Missing Documentation – Op Notes"});
-  this.casesListCodingReady=_.where(this.casesList, {Status: "Coding Ready"});
-  this.casesListRecieved=_.where(this.casesList, {Status: "Recieved"});
-  this.casesListChargeEntry=_.where(this.casesList, {Status: "Charges Entered"});
-  this.casesListMissingDocCode=_.where(this.casesList, {Status: "Missing Documentation – In Coding"});
-  this.casesListClaimBilled=_.where(this.casesList, {Status: "Claim Billed"});
-  this.casesListComplete=_.where(this.casesList, {Status: "Complete"});
 
-
-
+  this.CaseAsPerRole=_.where(this.casesList, localStorage.getItem("AdminSelectedUserRole"));
   this.cols = [
-    { field: 'Title', header: 'Case Title' },
-    { field: 'CompanyName', header: 'Company Name' },
+    { field: 'Title', header: 'Title' },
+    { field: 'CompanyName', header: 'Company' },
     { field: 'UserType', header: 'User type' },
-    {field:'MRN',header:'MRN'},
+    { field: 'MRN', header: 'MRN' },
     { field: 'Status', header: 'Status' },
     { field: 'Comment', header: 'Comment' },
 
 ];
-  this.CaseStatus = [
-  {StatusId: 1, StatusTitle: 'InCoding'},
-  {StatusId: 2, StatusTitle: 'Coding Ready'},
-  {StatusId: 3, StatusTitle: 'Received'},
-  {StatusId: 4, StatusTitle: 'Missing Documentation – Op Notes'},
-  {StatusId: 5, StatusTitle: 'Charges Entered'},
-  {StatusId: 6, StatusTitle: 'Missing Documentation'},
-  {StatusId: 7, StatusTitle: 'Claim Billed'},
-  {StatusId: 8, StatusTitle: 'Complete'}
+this.CaseStatusFilter = [
+  {label:  'InCoding', value: 'InCoding'},
+  {label: 'Coding Ready', value: 'Coding Ready'},
+  {label: 'Received', value: 'Received'},
+  {label: 'Missing Documentation – Op Notes', value: 'Missing Documentation – Op Notes'},
+  {label: 'Charges Entered', value: 'Charges Entered'},
+  {label: 'Missing Documentation', value: 'Missing Documentation'},
+  {label: 'Claim Billed', value: 'Claim Billed'},
+  {label: 'Complete', value: 'Complete'}
    ];
+   this.UserTypesFilter = [
+    { label: 'Biller', value: 'Biller' },
+    { label: 'Coder', value: 'Coder' },
+    { label: 'Collector', value: 'Collector' },
+    { label: 'Manager', value: 'Manager' },
+    { label: 'Supervisor', value: 'Supervisor' },
+    { label: 'PAS', value: 'PAS' },
 
-   this.CaseStatusFilter = [
-    {label:  'InCoding', value: 'InCoding'},
-    {label: 'Coding Ready', value: 'Coding Ready'},
-    {label: 'Received', value: 'Received'},
-    {label: 'Missing Documentation – Op Notes', value: 'Missing Documentation – Op Notes'},
-    {label: 'Charges Entered', value: 'Charges Entered'},
-    {label: 'Missing Documentation', value: 'Missing Documentation'},
-    {label: 'Claim Billed', value: 'Claim Billed'},
-    {label: 'Complete', value: 'Complete'}
-     ];
-     this.UserTypesFilter = [
-      { label: 'Biller', value: 'Biller' },
-      { label: 'Coder', value: 'Coder' },
-      { label: 'Collector', value: 'Collector' },
-      { label: 'Manager', value: 'Manager' },
-      { label: 'Supervisor', value: 'Supervisor' },
-      { label: 'PAS', value: 'PAS' },
-  
-     ];
+   ];
   }
 
- 
   onUpload(event) {
     debugger;
     for(let file of event.files) {
@@ -177,9 +138,7 @@ downloadFile(){
   var url= window.URL.createObjectURL(blob);
   window.open(url);
 }
-disableEnable() {
-    this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled;
-  }
+
 
 SaveStatusComment(data){
   debugger;
@@ -195,17 +154,9 @@ SaveStatusComment(data){
     }
 
  });
- this.casesListCodingClar=_.where(this.casesList, {Status: "InCoding"});
- this.casesListBilling=_.where(this.casesList, {Status: "Missing Documentation – Op Notes"});
- this.casesListCodingReady=_.where(this.casesList, {Status: "Coding Ready"});
- this.casesListRecieved=_.where(this.casesList, {Status: "Recieved"});
- this.casesListChargeEntry=_.where(this.casesList, {Status: "Charges Entered"});
- this.casesListMissingDocCode=_.where(this.casesList, {Status: "Missing Documentation – In Coding"});
- this.casesListClaimBilled=_.where(this.casesList, {Status: "Claim Billed"});
- this.casesListComplete=_.where(this.casesList, {Status: "Complete"});
+
   this.toaster.success("Updated Successfully !");
  
   }
-
 
 }
