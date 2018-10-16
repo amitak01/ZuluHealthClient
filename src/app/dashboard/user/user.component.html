@@ -233,10 +233,9 @@
     <div class="add_patient"><button class="btn btn-primary center-block" (click)="openModal(template)"><i class="fa fa-plus"></i>Add new user</button></div>
     <!-- <p-tabMenu [model]="tabs" ></p-tabMenu> -->
 
-    <tabset #staticTabs class="ng-tabs">
+     <tabset #staticTabs class="ng-tabs">
 
-      <tab heading="User" (click)="getSelectedTab('user')">
-
+      <tab heading="General" (click)="getSelectedTab('user')">
           <div class="shadow_body">
               <div class="row">
                 <div class="col-sm-12">
@@ -298,19 +297,137 @@
                 </div>
               
               </div>
-              </div>
-        </tab>
-        <tab heading="Permission" (click)="getSelectedTab('userpermission')">
-         <app-userpermissions></app-userpermissions>
-          </tab>
-          <tab heading="Password" (click)="getSelectedTab('password')">
-           <app-password></app-password>
+          </div>
+      </tab>
+       
+      <tab heading="Client" (click)="getSelectedTab('usersClient')">
+      
 
-            </tab>
-            <tab heading="Cases" (click)="getSelectedTab('case')">
+          <div class="shadow_body">
+            
+          <span class="ui-fluid">
+              <p-autoComplete [(ngModel)]="SelectedClients" [suggestions]="filteredSelectedClients" (completeMethod)="filterCountryMultiple($event)" styleClass="wid100"
+                  [minLength]="1" placeholder="name" field="name" [multiple]="true">
+              </p-autoComplete>
+          </span>
+            <div class="row">  
+                <p-table #dt [columns]="UserClientcols" [value]="SelectedClients" [paginator]="true" [rows]="10" selectionMode="single"  (onRowSelect)="onRowSelect($event)" >
+              
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            </th>
+                          
+
+                        </tr>
+                       
+                        <tr>
+                        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                            <input *ngSwitchCase="'Name'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                       </th>
+                          
+                        </tr>
+                     
+                      
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                           
+                                <td pEditableColumn  class="cursor">
+                                    <!-- <p-cellEditor>
+                                        <ng-template pTemplate="input">
+                    
+                                            <p-dropdown [options]="clientDropdown" [(ngModel)]="StatusTitle" class="full-width-drop" optionLabel="value" filter="true"></p-dropdown>
+                       
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            {{rowData.name}}
+                                        </ng-template>
+                                    </p-cellEditor> -->
+                                    {{rowData.name}}
+                                </td>
+                          
+                            <!-- <td>
+                                <i class="fa fa-edit" data-toggle="modal"  (click)="EditClient(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="DeleteClient(rowData)"></i>
+                            </td> -->
+                            <!-- <td><i class="fa fa-edit" data-toggle="modal"  (click)="OpenEditPopup(rowData,template,1)"></i> &nbsp;&nbsp;&nbsp; <i class="fa fa-trash"  (click)="OpenDeletePopup(rowData,Deletetemplate)"></i> -->
+                              <!-- &nbsp;&nbsp;&nbsp; <i class="fa fa-fast-forward" (click)="OpenAssignClientPopup(Assigntemplate,rowData)"></i>
+                  -->
+                            <!-- </td> -->
+                        </tr>
+                    </ng-template>
+                </p-table>
+          
+          
+                <div class="form-group pull-right">
+          
+           
+                 <button type="" class="btn btn-primary common_btn"> Save</button>
+                 <!-- <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="modalRef.hide()"  role="button">Cancel</button> -->
+          
+               
+                 <!-- <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button> -->
+             
+             
+           </div>
+      
+      </div>
+      </div>
+
+      </tab>
+
+      <tab heading="Permissions" (click)="getSelectedTab('userpermission')">
+         <app-userpermissions></app-userpermissions>
+      </tab>
+ 
+      <tab heading="Role" (click)="getSelectedTab('Role')">
+
+      <div class="shadow_body">
+              <form class="addUserForm" role="form" [formGroup]="addUserForm" (ngSubmit)="onFormSubmit(addUserForm.value) && addUserForm.valid">
+                <div class="row">
+                  <div class="col-sm-6">
+                     <div class="form-group">
+                   <label for="exampleInputEmail1">Role</label>
+                   <p-dropdown [options]="userTypes" formControlName="UserType" class="full-width-drop" optionLabel="UserTypeName"></p-dropdown>
+                 </div>
+                  </div>
+                  
+                </div>
+          
+          
+                <div class="form-group pull-right">
+          
+           
+                 <button type="" class="btn btn-primary common_btn"> Save</button>
+                 <!-- <button type="button" id="delImage" class="btn btn-primary common_btn Cancel" (click)="modalRef.hide()"  role="button">Cancel</button> -->
+          
+               
+                 <!-- <button type="button" id="saveImage" class="btn btn-primary common_btn" data-action="save" role="button">Save</button> -->
+             
+             
+           </div>
+          </form>
+      </div>
+      </tab>
+
+      <tab heading="Reset Password" (click)="getSelectedTab('password')">
+      <app-password></app-password>
+      </tab>
+            <!-- <tab heading="Cases" (click)="getSelectedTab('case')">
                 <app-userscases></app-userscases>
                 
-                 </tab>
+                 </tab> -->
+                 <!-- <tab heading="Coding" (click)="getSelectedTab('Coding')">
+                   <app-useruploadcoding></app-useruploadcoding>
+                 </tab> -->
+                 <!-- <tab heading="Coding" (click)="getSelectedTab('Coding')">
+                  <app-useruploadcoding></app-useruploadcoding>
+                </tab>
+                <tab heading="Coding" (click)="getSelectedTab('Coding')">
+                  <app-useruploadcoding></app-useruploadcoding>
+                </tab> -->
         </tabset>
     <!--  -->
 

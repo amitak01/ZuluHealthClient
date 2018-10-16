@@ -40,6 +40,13 @@ import { AccountSidebarComponent } from '../shared/account-sidebar/account-sideb
 import { PasswordComponent } from './password/password.component';
 import { UserscasesComponent } from './userscases/userscases.component';
 import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
+import { UseruploadcodingComponent } from './useruploadcoding/useruploadcoding.component';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
+
+
+
+
 
 
 @NgModule({
@@ -69,10 +76,12 @@ import { UserpermissionsComponent } from './userpermissions/userpermissions.comp
         MenubarModule,
         MenuModule,
         TabMenuModule,
-        MegaMenuModule
+        MegaMenuModule,
+        BsDatepickerModule.forRoot(),
+        PasswordStrengthBarModule
   ],
   declarations: [DashboardComponent,HeaderComponent,FooterComponent,SidebarComponent,
      ClientComponent, UserComponent, PermissionsComponent, CasesComponent,PageMenubarComponent,
-     AccountSidebarComponent,PasswordComponent,UserscasesComponent, UserpermissionsComponent]
+     AccountSidebarComponent,PasswordComponent,UserscasesComponent, UserpermissionsComponent, UseruploadcodingComponent]
 })
 export class DashboardModule { }

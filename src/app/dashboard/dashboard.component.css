@@ -1,62 +1,98 @@
-
-
 .card-counter{
-    box-shadow: 2px 2px 10px #DADADA;
-    margin: 5px;
-    padding: 20px 10px;
-    background-color: #fff;
-    height: 100px;
-    border-radius: 5px;
-    transition: .3s linear all;
-  }
+  box-shadow:0 10px 20px rgba(0, 0, 0, 0.2);
+  margin: 5px;
+  padding: 20px 10px;
+  background-color:#f1f1f2;
 
-  .card-counter:hover{
-    box-shadow: 4px 4px 20px #DADADA;
-    transition: .3s linear all;
-  }
+  border-radius: 5px;
+  transition: .3s linear all;
+}
 
-  .card-counter.primary{
-    background-color: #68727d;
-    color: #FFF;
-  }
+.card-counter:hover{
+  box-shadow: 4px 4px 20px #DADADA;
+  transition: .3s linear all;
+}
+.pad_top_30{padding-top: 30px;}
+.card-counter.primary{
+  background-color: #68727d;
+  color: #FFF;
+}
 
-  .card-counter.danger{
-    background-color:#a56968;
-    color: #FFF;
-  }  
+.card-counter.danger{
+  background-color:#a56968;
+  color: #FFF;
+}  
 
-  .card-counter.success{
-    background-color:#639a66;
-    color: #FFF;
-  }  
+.card-counter.success{
+  background-color:#639a66;
+  color: #FFF;
+}  
 
-  .card-counter.info{
-    background-color:#546582;
-    color: #FFF;
-  }  
+.card-counter.info{
+  background-color:#546582;
+  color: #FFF;
+}  
 
-  .card-counter i{
-    font-size: 5em;
-    opacity: 0.2;
-  }
+.card-counter i{
+  font-size: 5em;
+  opacity: 0.2;
+}
 
-  .card-counter .count-numbers{
-    position: absolute;
-    right: 35px;
+.card-counter .count-numbers{
+  position: relative;    
+  text-align: center;
+  font-size: 24px;
+  display: block;
+}
+
+.card-counter .count-name{
+  position: relative;    
+  text-align: center;
+  text-transform: capitalize;
+  opacity: 0.5;
+  display: block;
+  color:#000;
+  font-weight: bold;
+  font-size: 18px;
+}
+/ .content_body{margin-left: 290px;} /
+.content_body.side_full_body{margin-left:0px;}
+
+.db-hdr-main{padding: 15px;background: #fff; margin-bottom: 20px;box-shadow: 0px 2px 2px #c7c7c7;}
+.db-hdr-main h3{padding: 0;margin: 0;font-size: 16px;font-weight: 500;}
+.db-pages{margin-top: 30px;}
+.br-clr-red{border-left:5px solid #ee4502;}
+.br-clr-green{border-left:5px solid #69dc9e;}
+.br-clr-blue{border-left:5px solid #02abee;}
+.br-clr-yellow{border-left:5px solid #ffbc42;color:#333;}
+
+.count-numbers{    position: absolute !important;
+  top: -16px;
+  left: 43%;
+  background: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+ 
+  color: #fff;
+ 
+  line-height: 27px;}
+  button.db-button {
+    font-size: 12px;
+    float: right;
+    display: block;
+    margin: 15px 0 0;
+    position: relative;
+    top: 14px;
+}
+  span.count-name {
+    font-size: 12px !important;
+    position: relative !important;
     top: 20px;
-    font-size: 32px;
-    display: block;
-  }
-
-  .card-counter .count-name{
-    position: absolute;
-    right: 35px;
-    top: 65px;
-   
-    text-transform: capitalize;
-    opacity: 0.5;
-    display: block;
-    font-size: 18px;
-  }
-  /* .content_body{margin-left: 290px;} */
-  .content_body.side_full_body{margin-left:0px;}
+}
+  .br-clr-red  .count-numbers{ background: #ee4502; border: 1px solid #ee4502;}
+  .br-clr-green  .count-numbers{ background: #69dc9e; border: 1px solid #69dc9e;}
+  .br-clr-blue .count-numbers{ background: #02abee; border: 1px solid #02abee;}
+  .br-clr-yellow .count-numbers{ background: #ffbc42; border: 1px solid #ffbc42;}
+  .mar_bt_30{margin-bottom:30px;}

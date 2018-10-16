@@ -1,0 +1,70 @@
+<div class="shadow_body">
+    <p-table #dt [columns]="cols" [value]="codeDocList" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div class="search_input" style="text-align: right">        
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input  type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        
+                    </th>
+                    <th>
+                       Action
+                       
+                    </th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'MRN'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        <input *ngSwitchCase="'PatientName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        <input *ngSwitchCase="'UploadCodingDoc'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                         
+                      </th>
+                      <th></th>
+                     
+                  </tr>
+                
+            </ng-template>
+           
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+    
+                    <td>
+                                {{rowData.MRN}}    
+                    </td>
+                    <td>                
+                                {{rowData.PatientName}}
+                    </td>
+                    <td>               
+                                {{rowData.UploadCodingDoc}}
+                    </td>
+                    <td pEditableColumn  class="cursor">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <textarea pInputTextarea  [(ngModel)]="rowData.ChargeQuery"></textarea>
+                           
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.ChargeQuery}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td><i title="Upload Coding Document" class="fa fa-upload cursor" data-toggle="modal"  (click)="UploadCodingDoc(uploadCaseTemplate)"></i>&nbsp;&nbsp;&nbsp;
+                      <i title="Uploading Coding Document" class="fa fa-download cursor" aria-hidden="true" (click)="UploadCodingDoc(uploadCaseTemplate)"></i>&nbsp;&nbsp;&nbsp;
+                      <i title="Save Charge entry Query" *ngIf="rowData.UploadCodingDoc.length>0" class="fa fa-paper-plane cursor" data-toggle="modal"  (click)="SaveChargeEntryQuery(rowData)"></i>
+                    </td>
+             
+                </tr>
+            </ng-template>
+        </p-table> 
+
+      
+            
+         
+</div>

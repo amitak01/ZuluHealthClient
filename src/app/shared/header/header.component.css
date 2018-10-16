@@ -39,15 +39,16 @@
   .navbar-default .navbar-nav>.open>a,
   .navbar-default .navbar-nav>.open>a:focus,
   .navbar-default .navbar-nav>.open>a:hover {background-color: transparent !important; color: #FFF !important}
-  
+
   .navbar-default .navbar-brand {line-height: 55px !important; padding: 0 !important}
   .navbar-default .navbar-brand:focus,
   .navbar-default .navbar-brand:hover {color: #FFF !important}
   .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {margin: 0 !important}
   .navbar-right{float:right;}
   .search{    background: #e9ecf3; display: inline-block; padding: 7px 20px; border-radius: 16px;}
-   .search input{background:transparent;}
+   .search input{background:transparent; font-size:14px !important; }
      .search  i{color: #253b61;}
+  :host/deep/  .ui-widget, .ui-widget{font-size:14px !important;}
   @media (max-width: 767px) {
     .navbar>.container-fluid .navbar-brand {
       margin-left: 15px !important;

@@ -1,73 +1,152 @@
 
  <!-- <app-sidebar ></app-sidebar> -->
  <app-header></app-header>
-<section  class="content_body">
+<section  class="content_body ">
 
 
 
-<div class="content" *ngIf="DashboardShow">
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
-      <h4 class="main_heading">Dashboard</h4>
-    </div>
-  </div>
-      <div class="row">
-    <div class="col-md-3">
-      <div class="card-counter primary">
-        <i class="fa fa-code-fork"></i>
-        <span class="count-numbers">12</span>
-        <span class="count-name">Clients</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter danger">
-        <i class="fa fa-ticket"></i>
-        <span class="count-numbers">50</span>
-        <span class="count-name">Cases</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter success">
-        <i class="fa fa-database"></i>
-        <span class="count-numbers">20</span>
-        <span class="count-name">Billed Cases</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter info">
-        <i class="fa fa-users"></i>
-        <span class="count-numbers">30</span>
-        <span class="count-name">Unbilled Cases</span>
-      </div>
-    </div>
-  </div>
-    <div class="row mar_tp_30">
-  
-    <div class="col-sm-6">
+  <div class="content db-pages" *ngIf="DashboardShow">
+    <div class="container-fluid">
       <div class="shadow_body">
-      <p-chart type="line" [data]="data" ></p-chart>
-      </div>
-
-    </div>
-     <div class="col-sm-6">
-        <div class="shadow_body">
-    <p-chart type="radar" [data]="data2"></p-chart>
-     </div>
-
-    </div>
-        <div class="col-sm-12 mar_tp_30">
-           <div class="shadow_body">
-          <p-chart type="bar" [data]="data1"></p-chart>
-           </div>
+      <div class="row " >
+        <div class="col-sm-6">
+          <div class="">
+          <h5 class="">Dashboard</h5>
+         
+        </div>
+        </div>
+        <div class="col-sm-3 form-group">
+            <input type="text"
+                   placeholder="Start Date"
+                   class="form-control"
+                   bsDatepicker>
           </div>
-  </div>
-</div>
-</div>
-
+          <div class="col-sm-3 form-group">
+              <input type="text"
+                     placeholder="End Date"
+                     class="form-control"
+                     bsDatepicker>
+            </div>
+      </div></div>
+          <div class="shadow_body mar_tp_20 pad_top_30">
+          <div class="row">
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-red">
+            <span class="count-numbers">2</span>
+            <span class="count-name">Missing Documentation – Op Notes</span>
+            <button class="db-button"  (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+    
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-green">
+            <span class="count-numbers">5</span>
+            <span class="count-name">Received– Op Notes</span>
+            <button class="db-button" (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+    
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-blue">
+            <span class="count-numbers">1</span>
+            <span class="count-name">Missing Documentation-In Coding</span>
+            <button class="db-button" (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+    
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-yellow">
+            <span class="count-numbers">0</span>
+            <span class="count-name">Coding Ready</span>
+            <button class="db-button" (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+      </div>
+       <div class="row mar_tp_30"> 
+      
+        <!-- <div class="col-sm-6">
+          <div class="shadow_body">
+          <p-chart type="line" [data]="data" ></p-chart>
+          </div>
+    
+        </div> -->
+         <!-- <div class="col-sm-6">
+            <div class="shadow_body">
+        <p-chart type="radar" [data]="data2"></p-chart>
+         </div>
+    
+        </div> -->
+            <!-- <div class="col-sm-12 mar_tp_30">
+               <div class="shadow_body">
+              <p-chart type="bar" [data]="data1"></p-chart>
+               </div>
+              </div> -->
+      </div>
+  
+    <div class=""> 
+          <div class="row">
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-red">
+            <span class="count-numbers">2</span>
+            <span class="count-name">Missing Documentation- From Client</span>
+            <button class="db-button" (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+    
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-green">
+            <span class="count-numbers">3</span>
+            <span class="count-name">Coding Clarification from Coding</span>
+            <button class="db-button"class="db-button"(click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+    
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-blue">
+            <span class="count-numbers">1</span>
+            <span class="count-name">Missing Documentation- from Zulu Health</span>
+            <button class="db-button" (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+    
+        <div class="col-md-3">
+          <div class="card-counter clearfix br-clr-yellow">
+            <span class="count-numbers">0</span>
+            <span class="count-name">Charges Entered</span>
+            <button class="db-button" (click)="onClickMe()">View Report ></button>
+          </div>
+        </div>
+      </div>
+       <div class="row mar_tp_30"> 
+      
+      </div>
+    </div>
+    <div class=""> 
+      <div class="row">
+    
+    
+    <div class="col-md-3">
+      <div class="card-counter clearfix br-clr-red">
+        <span class="count-numbers">2</span>
+        <span class="count-name">Claim Billed</span>
+        <button class="db-button" (click)="onClickMe()">View Report ></button>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card-counter clearfix br-clr-green">
+        <span class="count-numbers">0</span>
+        <span class="count-name">Complete</span>
+        <button class="db-button" (click)="onClickMe()">View Report ></button>
+      </div>
+    </div>
+    </div>
+    <div class="row mar_tp_30"> 
+    
+    </div>
+    </div>
+    </div>
+  </div>   </div>
   <router-outlet></router-outlet>
 
 </section>

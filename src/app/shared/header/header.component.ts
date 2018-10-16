@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
     this.items = [
       {label: 'Account',
       command: (event: Event) =>this.navigateToPath()
-    },
+      },
       {
           
           label: 'File',

@@ -1,5 +1,4 @@
 import { Component, OnInit,TemplateRef  } from '@angular/core';
-import {DashboardComponent} from '../dashboard.component';
 import {DataExchangeService} from '../../services/data-exchange.service';
 import {UserType,MyClients,Users} from '../../model/user';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -39,7 +38,12 @@ export class UserComponent implements OnInit {
   ClientNames:any[];
   filteredClientSingle: any[];
   tabs:MenuItem[];
-  Clientstype: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
+  clientDropdown:any[];
+  UsersClients:any[];
+  UserClientcols:any[];
+  SelectedClients:any[];
+  filteredSelectedClients:any[];
+
  
 
   public mask = ['+', '9', '3', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
@@ -72,17 +76,19 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
 debugger;
+
    //tabs
-   
    this.tabs = [
     {label: 'User', icon: 'fa fa-fw fa-users',command: (event: Event) =>this.navigateToPath("user")},
     {label: 'Permission', icon: 'fa fa-fw fa-calendar',command: (event: Event) =>this.navigateToPath("userpermission") },
     {label: 'Role', icon: 'fa fa-fw fa-book',command: (event: Event) =>this.navigateToPath("changePassword")},
     {label: 'Password', icon: 'fa fa-fw fa-support',command: (event: Event) =>this.navigateToPath("changePassword")},
+    {label: 'Coding', icon: 'fa fa-fw fa-support',command: (event: Event) =>this.navigateToPath("Coding")},
+   
     // {label: 'Social', icon: 'fa fa-fw fa-twitter'}
     ];
   
-     
+     //get users
     this.users = [
       { UsersId:"1",FirstName: 'Rhonda Riose', LastName: 'Riose', Email: 'apple1@yopmail.com', PhoneNumber: '546456406.00',
      UserType:'Manager',Clients:'' },
@@ -145,7 +151,19 @@ debugger;
 
    ];
 
-   
+   this.clientDropdown = [
+    { label: 'Brandon Ambulatory', value: 'Brandon Ambulatory' },
+    { label: 'Alaska North', value: 'Alaska North' },
+    { label: 'Starpoint Irvine', value: 'Starpoint Irvine' },
+    { label: 'Pacific Surgery Center WA', value: 'Pacific Surgery Center WA' },
+    { label: 'Starpoint Studio City', value: 'Starpoint Studio City' },
+    { label: 'DISC Marina Del Rey', value: 'DISC Marina Del Rey' },
+   ];
+
+ 
+
+   this.UserClientcols = [
+    { field: 'name', header: 'Client Name' }]
    }
 
   onItemSelect (item:any) {
@@ -298,6 +316,28 @@ getSelectedTab(tab){
   localStorage.setItem("SelectedTab",tab);
 }
 
+// Client
+filterCountryMultiple(event) {
+  debugger;
+  let query = event.query;
+  this.UsersClients=[{name:"Brandon Ambulatory"},{name:"Alaska North"},
+  {name:"Starpoint Irvine"},{name:"Pacific Surgery Center WA"},{name:"Starpoint Studio City"},
+  {name:"DISC Marina Del Rey"}]
+  this.filteredSelectedClients= this.filter(query,this.UsersClients);
+  
+}
+
+filter(query, countries: any[]):any[] {
+  //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+  let filtered : any[] = [];
+  for(let i = 0; i < countries.length; i++) {
+      let country = countries[i];
+      if(country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          filtered.push(country);
+      }
+  }
+  return filtered;
+}
   
 }
 
